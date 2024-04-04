@@ -9,7 +9,7 @@ Article scraper that retrieves and cleans full-text articles from ScienceDirect 
 
 ### Copyright
 
-Copyright (c) 2024, Joshua Blomgren
+Copyright (c) 2024, Joshua Blomgren, Elizabeth Gilson, Jeffrey Jacob
 
 
 #### Acknowledgements
