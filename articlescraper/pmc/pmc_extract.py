@@ -4,6 +4,7 @@ Functions that extract information from the raw text of PubMed Central articles.
 
 from .pmc_clean import clean_references
 
+
 def get_title(pmc_article):
     """
     Returns the title of the article

@@ -85,7 +85,7 @@ def parse_pmc_article(pmc_article, chunk_size):
         "introduction": get_intro(pmc_article),
         "methods": get_methods(pmc_article),
         "discussion": get_discussion(pmc_article),
-        "full_text": clean_full_text(pmc_article, chunk_size)
+        "full_text": clean_full_text(pmc_article, chunk_size),
     }
     return article
 
@@ -136,4 +136,3 @@ def get_full_text(pmc_id, chunk_size=4200):
         return None
     full_text = clean_full_text(pmc_article, chunk_size)
     return full_text
-

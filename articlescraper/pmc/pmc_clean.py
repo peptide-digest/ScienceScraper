@@ -4,6 +4,7 @@ Functions to clean the data extracted from PMC.
 
 import re
 
+
 def clean_full_text(pmc_article, chunk_size):
     """
     Returns the full text of the article, excluding figures, tables,
@@ -75,11 +76,11 @@ def clean_full_text(pmc_article, chunk_size):
 
 def clean_references(pmc_article):
     """
-    Removes the reference numbers from the article which can clutter the text in terms of 
+    Removes the reference numbers from the article which can clutter the text in terms of
     readability and analysis by a machine learning model.
     """
-    pattern = r'\[[\d\s,]+\]'
-    cleaned_text = re.sub(pattern, '', pmc_article)
+    pattern = r"\[[\d\s,]+\]"
+    cleaned_text = re.sub(pattern, "", pmc_article)
     return cleaned_text
 
 
