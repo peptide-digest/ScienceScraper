@@ -40,15 +40,16 @@ def get_authors(xml_text):
     Returns
     -------
     list
-        The authors of the article.
+        The authors of the article in the format [First Name Last Name].
     """
     soup = BeautifulSoup(xml_text, "xml")
-    author_tag = soup.find_all("dc:creator")
-    if author_tag:
-        authors = [author.text.strip() for author in author_tag]
-    else:
-        authors = ["Not found."]
-    return authors
+    author_tags = soup.find_all("dc:creator")
+    authors = (
+        [author.text.strip() for author in author_tags]
+        if author_tags
+        else ["Not found."]
+    )
+    return [f"{author.split(', ')[1]} {author.split(', ')[0]}" for author in authors]
 
 
 def get_journal(xml_text):
