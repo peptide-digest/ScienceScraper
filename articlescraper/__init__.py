@@ -19,6 +19,17 @@ and references of the article.
 from .sciencedirect import get_article_info as get_scidir_article_info
 from .sciencedirect import get_full_text as get_scidir_full_text
 
+from .pmc import get_article_info as get_pmc_article_info
+from .pmc import get_full_text as get_pmc_full_text
+from .pmc import search_pmc
+
 from ._version import __version__
 
-__all__ = ["get_scidir_article_info", "get_scidir_full_text", "__version__"]
+__all__ = [
+    "get_scidir_article_info",
+    "get_scidir_full_text",
+    "get_pmc_article_info",
+    "get_pmc_full_text",
+    "search_pmc",
+    "__version__",
+]
