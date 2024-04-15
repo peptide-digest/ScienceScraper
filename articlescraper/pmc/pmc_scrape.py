@@ -90,7 +90,7 @@ def parse_pmc_article(pmc_article, chunk_size):
     return article
 
 
-def get_article_info(pmc_id, chunk_size=4200):
+def get_article_info(pmc_id, chunk_size=None):
     """
     Fetches and parses an article from PMC given a PMC ID
 
@@ -100,7 +100,7 @@ def get_article_info(pmc_id, chunk_size=4200):
         The PMC ID of the article
 
     chunk_size : int
-        The size of the chunks to split the full text into
+        The size of the chunks to split the full text into. Default is None.
 
     Returns
     -------
@@ -114,7 +114,7 @@ def get_article_info(pmc_id, chunk_size=4200):
     return article
 
 
-def get_full_text(pmc_id, chunk_size=4200):
+def get_full_text(pmc_id, chunk_size=None):
     """
     Fetches the full text of an article from PMC given a PMC ID
 
@@ -124,7 +124,7 @@ def get_full_text(pmc_id, chunk_size=4200):
         The PMC ID of the article
 
     chunk_size : int
-        The size of the chunks to split the full text into
+        The size of the chunks to split the full text into. Default is None.
 
     Returns
     -------

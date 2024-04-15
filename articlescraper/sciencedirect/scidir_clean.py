@@ -108,7 +108,8 @@ def clean_fulltext(xml_text, chunk_size):
         )
 
     # Split the text into chunks
-    full_text = split_into_chunks(full_text, chunk_size)
+    if chunk_size is not None:
+        full_text = split_into_chunks(full_text, chunk_size)
 
     return full_text
 

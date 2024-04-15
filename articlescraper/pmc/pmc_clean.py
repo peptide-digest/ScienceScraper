@@ -2,7 +2,16 @@
 Functions to clean the data extracted from PMC.
 """
 
-import re
+from .pmc_extract import (
+    get_title,
+    get_journal,
+    get_publisher,
+    get_article_type,
+    get_date,
+    get_keywords,
+    get_abstract,
+    clean_references,
+)
 
 
 def clean_full_text(pmc_article, chunk_size):
@@ -24,6 +33,20 @@ def clean_full_text(pmc_article, chunk_size):
         The full text of the article, excluding figures, tables,
         supplementary information sections, and reference numbers
     """
+    full_text = ""
+
+    article_title = "Title: " + get_title(pmc_article) + ". \n"
+    article_type = "Article type: " + get_article_type(pmc_article) + ". \n"
+    publisher = "Publisher: " + get_publisher(pmc_article) + " \n"
+    journal = "Journal: " + get_journal(pmc_article) + ". \n"
+    date = "Date: " + get_date(pmc_article) + ". \n"
+    keywords = "Keywords: " + ", ".join(get_keywords(pmc_article)) + ". \n"
+    abstract = "Abstract: " + get_abstract(pmc_article) + ". \n"
+
+    full_text += (
+        article_title + article_type + publisher + journal + date + keywords + abstract
+    )
+    
     if pmc_article.find("body") is None:
         return None
 
@@ -34,8 +57,6 @@ def clean_full_text(pmc_article, chunk_size):
 
     for table in body.find_all("table-wrap"):
         table.decompose()
-
-    full_text = ""
 
     for sec in body.find_all("sec"):
         title = sec.find("title").get_text()
@@ -71,17 +92,10 @@ def clean_full_text(pmc_article, chunk_size):
 
         full_text = clean_references(full_text)
 
-    return split_into_chunks(full_text, chunk_size)
+    if chunk_size:
+        full_text = split_into_chunks(full_text, chunk_size)
 
-
-def clean_references(pmc_article):
-    """
-    Removes the reference numbers from the article which can clutter the text in terms of
-    readability and analysis by a machine learning model.
-    """
-    pattern = r"\[[\d\s,]+\]"
-    cleaned_text = re.sub(pattern, "", pmc_article)
-    return cleaned_text
+    return full_text
 
 
 def split_into_chunks(text, chunk_size):

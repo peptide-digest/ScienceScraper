@@ -2,7 +2,7 @@
 Functions that extract information from the raw text of PubMed Central articles.
 """
 
-from .pmc_clean import clean_references
+import re
 
 
 def get_title(pmc_article):
@@ -21,7 +21,9 @@ def get_title(pmc_article):
     """
     if pmc_article.find("article-title") is None:
         return None
-    return pmc_article.find("article-title").text
+    title = pmc_article.find("article-title").text
+    title = title.replace("\n", "").replace("\t", "")
+    return title
 
 
 def get_authors(pmc_article):
@@ -373,3 +375,13 @@ def get_discussion(pmc_article):
 
     discussion = clean_references(discussion)
     return discussion
+
+
+def clean_references(pmc_article):
+    """
+    Removes the reference numbers from the article which can clutter the text in terms of
+    readability and analysis by a machine learning model.
+    """
+    pattern = r"\[[\d\s,]+\]"
+    cleaned_text = re.sub(pattern, "", pmc_article)
+    return cleaned_text

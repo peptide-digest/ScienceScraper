@@ -23,7 +23,7 @@ from .scidir_extract import (
 )
 
 
-def get_article_info(api_key, doi=None, pii=None, url=None, chunk_size=4200):
+def get_article_info(api_key, doi=None, pii=None, url=None, chunk_size=None):
     """
     Get the full text of a ScienceDirect article using the ScienceDirect API.
 
@@ -38,7 +38,7 @@ def get_article_info(api_key, doi=None, pii=None, url=None, chunk_size=4200):
     url : str, optional
         The URL of the article to be scraped.
     chunk_size : int, optional
-        The size of the chunks to split the full text into. Default is 4200.
+        The size of the chunks to split the full text into. Default is None.
 
     Returns
     -------
@@ -96,7 +96,7 @@ def get_article_info(api_key, doi=None, pii=None, url=None, chunk_size=4200):
     return article_info
 
 
-def get_full_text(api_key, doi=None, pii=None, url=None, chunk_size=4200):
+def get_full_text(api_key, doi=None, pii=None, url=None, chunk_size=None):
     """
     Get the full text of a ScienceDirect article using the ScienceDirect API.
 
@@ -111,7 +111,7 @@ def get_full_text(api_key, doi=None, pii=None, url=None, chunk_size=4200):
     url : str, optional
         The URL of the article to be scraped.
     chunk_size : int, optional
-        The size of the chunks to split the full text into. Default is 4200.
+        The size of the chunks to split the full text into. Default is None.
 
     Returns
     -------
