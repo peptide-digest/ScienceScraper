@@ -18,10 +18,13 @@ and references of the article.
 # Get submodules when importing package
 from .sciencedirect import get_article_info as get_scidir_article_info
 from .sciencedirect import get_full_text as get_scidir_full_text
+from .sciencedirect import search_scidir 
+from .sciencedirect import check_new_articles as check_new_scidir_articles
 
 from .pmc import get_article_info as get_pmc_article_info
 from .pmc import get_full_text as get_pmc_full_text
 from .pmc import search_pmc
+from .pmc import check_new_articles as check_new_pmc_articles
 
 from ._version import __version__
 
@@ -32,4 +35,7 @@ __all__ = [
     "get_pmc_full_text",
     "search_pmc",
     "__version__",
+    "search_scidir",
+    "check_new_scidir_articles",
+    "check_new_pmc_articles",
 ]

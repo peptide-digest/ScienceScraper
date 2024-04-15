@@ -20,6 +20,8 @@ from . import scidir_clean
 from . import scidir_scrape
 from .scidir_scrape import get_article_info
 from .scidir_scrape import get_full_text
+from .scidir_search import check_new_articles
+from .scidir_search import search_scidir
 
 __all__ = [
     "scidir_extract",
@@ -27,4 +29,6 @@ __all__ = [
     "scidir_scrape",
     "get_article_info",
     "get_full_text",
+    "check_new_articles",
+    "search_scidir",
 ]

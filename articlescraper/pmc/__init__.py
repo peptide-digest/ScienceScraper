@@ -22,6 +22,7 @@ from . import pmc_search
 from .pmc_scrape import get_article_info
 from .pmc_scrape import get_full_text
 from .pmc_search import search_pmc
+from .pmc_search import check_new_articles
 
 __all__ = [
     "pmc_extract",
@@ -30,4 +31,5 @@ __all__ = [
     "get_article_info",
     "get_full_text",
     "search_pmc",
+    "check_new_articles",
 ]
