@@ -1,0 +1,6 @@
+sphinx
+sphinx_rtd_theme
+lxml==5.1.0
+requests
+beautifulsoup4
+-e ..

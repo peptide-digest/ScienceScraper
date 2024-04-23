@@ -17,12 +17,12 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath('..'))
 
-import articlescraper
+import sciencescraper
 
 
 # -- Project information -----------------------------------------------------
 
-project = 'ArticleScraper'
+project = 'ScienceScraper'
 copyright = ("2024, Joshua Blomgren. Project structure based on the "
              "Computational Molecular Science Python Cookiecutter version 1.1")
 author = 'Joshua Blomgren'
@@ -43,16 +43,28 @@ release = ''
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx.ext.autosummary',
-    'sphinx.ext.autodoc',
+    'autoapi.extension',
+    #'sphinx.ext.autosummary',
+    #'sphinx.ext.autodoc',
     'sphinx.ext.mathjax',
     'sphinx.ext.viewcode',
     'sphinx.ext.napoleon',
     'sphinx.ext.intersphinx',
     'sphinx.ext.extlinks',
 ]
+autoapi_dirs = ['../sciencescraper']
+autoapi_ignore = ["*/tests/*",
+                  "*_version.py"]
+                  
+autoapi_options = ['members', 
+		'undoc-members', 
+		#'private-members', 
+		#'special-members', 
+		'show-inheritance', 
+		'show-module-summary', 
+		'imported-members']
 
-autosummary_generate = True
+# autosummary_generate = True	# or delete this
 napoleon_google_docstring = False
 napoleon_use_param = False
 napoleon_use_ivar = True
@@ -74,7 +86,7 @@ master_doc = 'index'
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = None
+language = 'Python'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -117,7 +129,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'articlescraperdoc'
+htmlhelp_basename = 'sciencescraperdoc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -144,8 +156,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'articlescraper.tex', 'ArticleScraper Documentation',
-     'articlescraper', 'manual'),
+    (master_doc, 'sciencescraper.tex', 'ScienceScraper Documentation',
+     'sciencescraper', 'manual'),
 ]
 
 
@@ -154,7 +166,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'articlescraper', 'ArticleScraper Documentation',
+    (master_doc, 'sciencescraper', 'ScienceScraper Documentation',
      [author], 1)
 ]
 
@@ -165,8 +177,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'articlescraper', 'ArticleScraper Documentation',
-     author, 'articlescraper', 'Article scraper that retrieves and cleans full-text articles from ScienceDirect and PMC.',
+    (master_doc, 'sciencescraper', 'ScienceScraper Documentation',
+     author, 'sciencescraper', 'Article scraper that retrieves and cleans full-text articles from ScienceDirect and PMC.',
      'Miscellaneous'),
 ]
 
