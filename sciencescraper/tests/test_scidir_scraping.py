@@ -7,9 +7,9 @@ import sys
 
 import pytest
 
-import articlescraper
+import sciencescraper
 
 
 def test_articlescraper_imported():
     """Sample test, will always pass so long as import statement worked."""
-    assert "articlescraper" in sys.modules
+    assert "sciencescraper" in sys.modules
