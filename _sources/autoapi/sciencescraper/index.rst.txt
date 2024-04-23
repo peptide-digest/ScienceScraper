@@ -1,0 +1,177 @@
+:py:mod:`sciencescraper`
+========================
+
+.. py:module:: sciencescraper
+
+.. autoapi-nested-parse::
+
+   ``sciencescraper``
+   ==================
+
+   This package contains modules for scraping articles from ScienceDirect and PubMedCentral.
+
+   Subpackages
+   -----------
+   - ``sciencedirect``: Subpackage for scraping articles from ScienceDirect.
+   - ``pmc``: Subpackage for scraping articles from PubMedCentral.
+
+   Functions
+   ---------
+   - ``get_scidir_article_info``: Get information about an article from ScienceDirect.
+   - ``get_scidir_full_text``: Get the full text of an article from ScienceDirect.
+   - ``get_pmc_article_info``: Get information about an article from PubMedCentral.
+   - ``get_pmc_full_text``: Get the full text of an article from PubMedCentral.
+   - ``search_pmc``: Search for articles on PubMedCentral.
+   - ``search_scidir``: Search for articles on ScienceDirect.
+   - ``check_new_scidir_articles``: Check for new articles on ScienceDirect.
+   - ``check_new_pmc_articles``: Check for new articles on PubMedCentral.
+
+   This package is part of the PeptideDigest project. The functions in this package are used to search for
+   and scrape scientific publications available on ScienceDirect and PubMedCentral. The full text of the articles
+   is cleaned, and the article information is returned in a structured format as a Python dictionary.
+
+
+
+Subpackages
+-----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 3
+
+   pmc/index.rst
+   sciencedirect/index.rst
+
+
+Package Contents
+----------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   sciencescraper.get_scidir_article_info
+   sciencescraper.get_scidir_full_text
+   sciencescraper.search_scidir
+   sciencescraper.check_new_scidir_articles
+   sciencescraper.get_pmc_article_info
+   sciencescraper.get_pmc_full_text
+   sciencescraper.search_pmc
+   sciencescraper.check_new_pmc_articles
+
+
+
+.. py:function:: get_scidir_article_info(api_key, doi=None, pii=None, url=None, chunk_size=None)
+
+   Get the full text of a ScienceDirect article using the ScienceDirect API.
+
+   :Parameters: * **api_key** (*str*) -- The API key for the ScienceDirect API. API keys can be obtained by creating an account at https://dev.elsevier.com/.
+                * **doi** (*str, optional*) -- The DOI of the article to be scraped.
+                * **pii** (*str, optional*) -- The PII of the article to be scraped.
+                * **url** (*str, optional*) -- The URL of the article to be scraped.
+                * **chunk_size** (*int, optional*) -- The size of the chunks to split the full text into. Default is None.
+
+   :returns: A dictionary containing the title, authors, journal, year, URL, open access status, keywords, abstract, methods,
+             results, discussion, and references of the article.
+   :rtype: dict
+
+
+.. py:function:: get_scidir_full_text(api_key, doi=None, pii=None, url=None, chunk_size=None)
+
+   Get the full text of a ScienceDirect article using the ScienceDirect API.
+
+   :Parameters: * **api_key** (*str*) -- The API key for the ScienceDirect API. API keys can be obtained by creating an account at https://dev.elsevier.com/.
+                * **doi** (*str, optional*) -- The DOI of the article to be scraped.
+                * **pii** (*str, optional*) -- The PII of the article to be scraped.
+                * **url** (*str, optional*) -- The URL of the article to be scraped.
+                * **chunk_size** (*int, optional*) -- The size of the chunks to split the full text into. Default is None.
+
+   :returns: The full text of the article.
+   :rtype: str
+
+
+.. py:function:: search_scidir(api_key, query, sortBy='relevance', startDate=None, max_results=25, offset=0)
+
+   Get articles from Elsevier's ScienceDirect database that are relevant to a specified search query.
+
+   :Parameters: * **api_key** (*str*) -- The API key for the ScienceDirect API. API keys can be obtained by creating an account at https://dev.elsevier.com/.
+                * **query** (*str*) -- The search query to be used to search for articles.
+                * **sortBy** (*str, optional*) -- The sorting order for the search results. Options are:
+                  - "relevance": Sort by relevance
+                  - "date": Sort by date
+                  Default is "relevance".
+                * **startDate** (*str, optional*) -- The start date for the search query in the format 'YYYY-MM-DD'.
+                * **max_results** (*int, optional*) -- The maximum number of results to return. Default is 25. Permitted values: 10, 25, 50, 100.
+                * **offset** (*int, optional*) -- The number of results to skip. Default is 0.
+
+   :rtype: list of DOIs of the articles
+
+
+.. py:function:: check_new_scidir_articles(api_key, query, days)
+
+   Check for new articles in Elsevier's ScienceDirect database and notify the user of any new articles.
+
+   :Parameters: * **api_key** (*str*) -- The API key for the ScienceDirect API. API keys can be obtained by creating an account at https://dev.elsevier.com/.
+                * **query** (*str*) -- The search query to be used to search for new articles.
+                * **days** (*int*) -- The number of days to search for new articles.
+
+   :returns: A list of dictionaries containing the title, authors, journal, year, URL, open access status, keywords, abstract,
+             methods, results, discussion, and references of the new articles.
+   :rtype: list of dict
+
+
+.. py:function:: get_pmc_article_info(pmc_id, chunk_size=None)
+
+   Fetches and parses an article from PMC given a PMC ID
+
+   :Parameters: * **pmc_id** (*str*) -- The PMC ID of the article
+                * **chunk_size** (*int, optional*) -- The size of the chunks to split the full text into. Default is None.
+
+   :returns: **article** -- The parsed article
+   :rtype: dict
+
+
+.. py:function:: get_pmc_full_text(pmc_id, chunk_size=None)
+
+   Fetches the full text of an article from PMC given a PMC ID
+
+   :Parameters: * **pmc_id** (*str*) -- The PMC ID of the article
+                * **chunk_size** (*int, optional*) -- The size of the chunks to split the full text into. Default is None.
+
+   :returns: **full_text** -- The full text of the article
+   :rtype: str
+
+
+.. py:function:: search_pmc(query, sort='relevance', mindate=None, maxdate=None, reldate=None, retstart=0, retmax=20)
+
+   Searches PMC for articles given a query
+
+   :Parameters: * **query** (*str*) -- The query to search for
+                * **sort** (*str, optional*) -- The sorting order for the search results. Options are:
+                  - "relevance": Sort by relevance
+                  - "pub_date": Sort by publication date in descending order
+                  - "JournalName": Sort by journal in ascending order
+                  - "Author": Sort by first author in ascending order
+                * **mindate** (*str, optional*) -- The minimum date for the search results. Format is "YYYY/MM/DD", "YYYY/MM", or "YYYY". Must also provide maxdate
+                * **maxdate** (*str, optional*) -- The maximum date for the search results. Format is "YYYY/MM/DD", "YYYY/MM", or "YYYY". Must also provide mindate
+                * **reldate** (*str, optional*) -- The number of days to search back from the current date.
+                * **retstart** (*int, optional*) -- The index of the first article to return
+                * **retmax** (*int, optional*) -- The maximum number of articles to return
+
+   :returns: **pmc_ids** -- The PMC IDs of the search results
+   :rtype: list
+
+
+.. py:function:: check_new_pmc_articles(query, days, chunk_size=None)
+
+   Get open access articles from PubMed Central that have been published after a specified date.
+
+   :Parameters: * **query** (*str*) -- The query to search for
+                * **days** (*int*) -- The number of days to search back from the current date.
+                * **chunk_size** (*int, optional*) -- The size of the chunks to split the full text into
+
+   :returns: **pmc_ids** -- The PMC IDs of the search results
+   :rtype: list
+
+

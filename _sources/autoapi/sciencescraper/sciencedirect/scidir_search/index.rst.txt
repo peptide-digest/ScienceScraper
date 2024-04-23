@@ -1,0 +1,79 @@
+:py:mod:`sciencescraper.sciencedirect.scidir_search`
+====================================================
+
+.. py:module:: sciencescraper.sciencedirect.scidir_search
+
+.. autoapi-nested-parse::
+
+   Functions for searching for articles on ScienceDirect.
+
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   sciencescraper.sciencedirect.scidir_search.search_scidir
+   sciencescraper.sciencedirect.scidir_search.get_new_articles
+   sciencescraper.sciencedirect.scidir_search.notify_new_articles
+   sciencescraper.sciencedirect.scidir_search.check_new_articles
+
+
+
+.. py:function:: search_scidir(api_key, query, sortBy='relevance', startDate=None, max_results=25, offset=0)
+
+   Get articles from Elsevier's ScienceDirect database that are relevant to a specified search query.
+
+   :Parameters: * **api_key** (*str*) -- The API key for the ScienceDirect API. API keys can be obtained by creating an account at https://dev.elsevier.com/.
+                * **query** (*str*) -- The search query to be used to search for articles.
+                * **sortBy** (*str, optional*) -- The sorting order for the search results. Options are:
+                  - "relevance": Sort by relevance
+                  - "date": Sort by date
+                  Default is "relevance".
+                * **startDate** (*str, optional*) -- The start date for the search query in the format 'YYYY-MM-DD'.
+                * **max_results** (*int, optional*) -- The maximum number of results to return. Default is 25. Permitted values: 10, 25, 50, 100.
+                * **offset** (*int, optional*) -- The number of results to skip. Default is 0.
+
+   :rtype: list of DOIs of the articles
+
+
+.. py:function:: get_new_articles(api_key, query, start_date, chunk_size=None)
+
+   Get open access articles from Elsevier's ScienceDirect database that have been published after a specified date.
+
+   :Parameters: * **api_key** (*str*) -- The API key for the ScienceDirect API. API keys can be obtained by creating an account at https://dev.elsevier.com/.
+                * **query** (*str*) -- The search query to be used to search for new articles.
+                * **start_date** (*str*) -- The start date for the search query in the format 'YYYY-MM-DD'.
+                * **chunk_size** (*int, optional*) -- The size of the chunks to split the full text into. Default is None.
+
+   :returns: A list of dictionaries containing the title, authors, journal, year, URL, open access status, keywords, abstract,
+             methods, results, discussion, and references of the new articles.
+   :rtype: list of dict
+
+
+.. py:function:: notify_new_articles(articles)
+
+   Notify the user of new articles.
+
+   :Parameters: **articles** (*list of dict*) -- A list of dictionaries containing the title, authors, journal, year, URL, open access status, keywords, abstract,
+                methods, results, discussion, and references of the new articles.
+
+
+.. py:function:: check_new_articles(api_key, query, days)
+
+   Check for new articles in Elsevier's ScienceDirect database and notify the user of any new articles.
+
+   :Parameters: * **api_key** (*str*) -- The API key for the ScienceDirect API. API keys can be obtained by creating an account at https://dev.elsevier.com/.
+                * **query** (*str*) -- The search query to be used to search for new articles.
+                * **days** (*int*) -- The number of days to search for new articles.
+
+   :returns: A list of dictionaries containing the title, authors, journal, year, URL, open access status, keywords, abstract,
+             methods, results, discussion, and references of the new articles.
+   :rtype: list of dict
+
+

@@ -1,0 +1,49 @@
+:py:mod:`sciencescraper.pmc.pmc_clean`
+======================================
+
+.. py:module:: sciencescraper.pmc.pmc_clean
+
+.. autoapi-nested-parse::
+
+   Functions to clean the data extracted from PMC.
+
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   sciencescraper.pmc.pmc_clean.clean_full_text
+   sciencescraper.pmc.pmc_clean.split_into_chunks
+
+
+
+.. py:function:: clean_full_text(pmc_article, chunk_size)
+
+   Returns the full text of the article, excluding figures, tables,
+   and supplementary information sections, and removes reference numbers
+
+   :Parameters: * **pmc_article** (*BeautifulSoup*) -- The article as a BeautifulSoup object
+                * **chunk_size** (*int*) -- The size of the chunks to split the full text into
+
+   :returns: **full_text** -- The full text of the article, excluding figures, tables,
+             supplementary information sections, and reference numbers
+   :rtype: str
+
+
+.. py:function:: split_into_chunks(text, chunk_size)
+
+   Splits a given text into chunks of approximately 'chunk_size' words.
+
+   :Parameters: * **text** (*str*) -- The text to split into chunks.
+                * **chunk_size** (*int*) -- The size of the chunks to split the text into.
+
+   :returns: List of the text split into chunks.
+   :rtype: list of str
+
+

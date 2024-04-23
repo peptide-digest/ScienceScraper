@@ -1,0 +1,66 @@
+:py:mod:`sciencescraper.pmc.pmc_search`
+=======================================
+
+.. py:module:: sciencescraper.pmc.pmc_search
+
+.. autoapi-nested-parse::
+
+   Functions for searching for articles on PubMed Central.
+
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   sciencescraper.pmc.pmc_search.search_pmc
+   sciencescraper.pmc.pmc_search.check_new_articles
+   sciencescraper.pmc.pmc_search.notify_new_articles
+
+
+
+.. py:function:: search_pmc(query, sort='relevance', mindate=None, maxdate=None, reldate=None, retstart=0, retmax=20)
+
+   Searches PMC for articles given a query
+
+   :Parameters: * **query** (*str*) -- The query to search for
+                * **sort** (*str, optional*) -- The sorting order for the search results. Options are:
+                  - "relevance": Sort by relevance
+                  - "pub_date": Sort by publication date in descending order
+                  - "JournalName": Sort by journal in ascending order
+                  - "Author": Sort by first author in ascending order
+                * **mindate** (*str, optional*) -- The minimum date for the search results. Format is "YYYY/MM/DD", "YYYY/MM", or "YYYY". Must also provide maxdate
+                * **maxdate** (*str, optional*) -- The maximum date for the search results. Format is "YYYY/MM/DD", "YYYY/MM", or "YYYY". Must also provide mindate
+                * **reldate** (*str, optional*) -- The number of days to search back from the current date.
+                * **retstart** (*int, optional*) -- The index of the first article to return
+                * **retmax** (*int, optional*) -- The maximum number of articles to return
+
+   :returns: **pmc_ids** -- The PMC IDs of the search results
+   :rtype: list
+
+
+.. py:function:: check_new_articles(query, days, chunk_size=None)
+
+   Get open access articles from PubMed Central that have been published after a specified date.
+
+   :Parameters: * **query** (*str*) -- The query to search for
+                * **days** (*int*) -- The number of days to search back from the current date.
+                * **chunk_size** (*int, optional*) -- The size of the chunks to split the full text into
+
+   :returns: **pmc_ids** -- The PMC IDs of the search results
+   :rtype: list
+
+
+.. py:function:: notify_new_articles(articles)
+
+   Notify the user of new articles.
+
+   :Parameters: **articles** (*list of dict*) -- A list of dictionaries containing the title, authors, journal, year, URL, open access status, keywords, abstract,
+                methods, results, discussion, and references of the new articles.
+
+

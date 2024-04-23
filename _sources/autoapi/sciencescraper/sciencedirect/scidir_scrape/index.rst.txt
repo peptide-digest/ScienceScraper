@@ -1,0 +1,96 @@
+:py:mod:`sciencescraper.sciencedirect.scidir_scrape`
+====================================================
+
+.. py:module:: sciencescraper.sciencedirect.scidir_scrape
+
+.. autoapi-nested-parse::
+
+   Functions for retrieving the raw text of ScienceDirect articles.
+
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   sciencescraper.sciencedirect.scidir_scrape.get_article_info
+   sciencescraper.sciencedirect.scidir_scrape.get_full_text
+   sciencescraper.sciencedirect.scidir_scrape.get_xml_doi
+   sciencescraper.sciencedirect.scidir_scrape.get_xml_pii
+   sciencescraper.sciencedirect.scidir_scrape.get_xml_url
+
+
+
+.. py:function:: get_article_info(api_key, doi=None, pii=None, url=None, chunk_size=None)
+
+   Get the full text of a ScienceDirect article using the ScienceDirect API.
+
+   :Parameters: * **api_key** (*str*) -- The API key for the ScienceDirect API. API keys can be obtained by creating an account at https://dev.elsevier.com/.
+                * **doi** (*str, optional*) -- The DOI of the article to be scraped.
+                * **pii** (*str, optional*) -- The PII of the article to be scraped.
+                * **url** (*str, optional*) -- The URL of the article to be scraped.
+                * **chunk_size** (*int, optional*) -- The size of the chunks to split the full text into. Default is None.
+
+   :returns: A dictionary containing the title, authors, journal, year, URL, open access status, keywords, abstract, methods,
+             results, discussion, and references of the article.
+   :rtype: dict
+
+
+.. py:function:: get_full_text(api_key, doi=None, pii=None, url=None, chunk_size=None)
+
+   Get the full text of a ScienceDirect article using the ScienceDirect API.
+
+   :Parameters: * **api_key** (*str*) -- The API key for the ScienceDirect API. API keys can be obtained by creating an account at https://dev.elsevier.com/.
+                * **doi** (*str, optional*) -- The DOI of the article to be scraped.
+                * **pii** (*str, optional*) -- The PII of the article to be scraped.
+                * **url** (*str, optional*) -- The URL of the article to be scraped.
+                * **chunk_size** (*int, optional*) -- The size of the chunks to split the full text into. Default is None.
+
+   :returns: The full text of the article.
+   :rtype: str
+
+
+.. py:function:: get_xml_doi(api_key, doi)
+
+   Get the raw XML text from an article using the ScienceDirect API and the article's DOI.
+
+   :Parameters: * **api_key** (*str*) -- The API key for the ScienceDirect API. API keys can be obtained by creating an account at https://dev.elsevier.com/.
+                * **doi** (*str*) -- The DOI of the article to be scraped.
+
+   :returns: The raw XML text of the article.
+   :rtype: str
+
+   :raises requests.exceptions.HTTPError: If the request to the ScienceDirect API fails.
+
+
+.. py:function:: get_xml_pii(api_key, pii)
+
+   Get the raw XML text from an article using the ScienceDirect API and the article's PII.
+
+   :Parameters: * **api_key** (*str*) -- The API key for the ScienceDirect API. API keys can be obtained by creating an account at https://dev.elsevier.com/.
+                * **pii** (*str*) -- The PII of the article to be scraped.
+
+   :returns: The raw XML text of the article.
+   :rtype: str
+
+   :raises requests.exceptions.HTTPError: If the request to the ScienceDirect API fails.
+
+
+.. py:function:: get_xml_url(api_key, url)
+
+   Get the raw XML text from an article using the ScienceDirect API and the article's URL.
+
+   :Parameters: * **api_key** (*str*) -- The API key for the ScienceDirect API. API keys can be obtained by creating an account at https://dev.elsevier.com/.
+                * **url** (*str*) -- The URL of the article to be scraped.
+
+   :returns: The raw XML text of the article.
+   :rtype: str
+
+   :raises requests.exceptions.HTTPError: If the request to the ScienceDirect API fails.
+
+

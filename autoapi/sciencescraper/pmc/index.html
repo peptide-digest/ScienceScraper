@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="Python" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sciencescraper.pmc &mdash; ScienceScraper  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=1e580bb1"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="sciencescraper.pmc.pmc_clean" href="pmc_clean/index.html" />
+    <link rel="prev" title="sciencescraper" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            ScienceScraper
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sciencescraper</span></code></a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../index.html#id1"><p>Duplicate implicit target name: &quot;sciencescraper&quot;.</p>
+</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#id2">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sciencescraper.pmc</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sciencedirect/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sciencescraper.sciencedirect</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#package-contents">Package Contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ScienceScraper</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sciencescraper</span></code></a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sciencescraper.pmc</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/autoapi/sciencescraper/pmc/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-sciencescraper.pmc">
+<span id="sciencescraper-pmc"></span><h1><a class="reference internal" href="#module-sciencescraper.pmc" title="sciencescraper.pmc"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sciencescraper.pmc</span></code></a><a class="headerlink" href="#module-sciencescraper.pmc" title="Link to this heading"></a></h1>
+<section id="id1">
+<p>This subpackage contains modules for scraping articles from PubMed Central.</p>
+<section id="submodules">
+<h3>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pmc_extract</span></code>: Functions to extract information from the raw XML text of a PubMed Central article.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pmc_scrape</span></code>: Functions for retrieving the clean text of PubMed Central articles.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pmc_search</span></code>: Functions for searching for articles on PubMed Central.</p></li>
+</ul>
+<p>The main functions of this subpackage are <code class="docutils literal notranslate"><span class="pre">get_article_info</span></code> in <code class="docutils literal notranslate"><span class="pre">pmc_scrape</span></code> and <code class="docutils literal notranslate"><span class="pre">search_pmc</span></code> in <code class="docutils literal notranslate"><span class="pre">pmc_search</span></code>.
+<code class="docutils literal notranslate"><span class="pre">get_article_info</span></code> retrieves the full text of a PubMed Central article using the PubMed Central API and returns a dictionary
+containing the article's information along with the full text of the article. <code class="docutils literal notranslate"><span class="pre">search_pmc</span></code> searches PubMed Central for
+articles based on a query and returns a list of PMC IDs for the search results.</p>
+</section>
+</section>
+<section id="id2">
+<h2>Submodules<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pmc_clean/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sciencescraper.pmc.pmc_clean</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="pmc_extract/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sciencescraper.pmc.pmc_extract</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="pmc_scrape/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sciencescraper.pmc.pmc_scrape</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="pmc_search/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sciencescraper.pmc.pmc_search</span></code></a></li>
+</ul>
+</div>
+</section>
+<section id="package-contents">
+<h2>Package Contents<a class="headerlink" href="#package-contents" title="Link to this heading"></a></h2>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sciencescraper.pmc.get_article_info" title="sciencescraper.pmc.get_article_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_article_info</span></code></a>(pmc_id[, chunk_size])</p></td>
+<td><p>Fetches and parses an article from PMC given a PMC ID</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sciencescraper.pmc.get_full_text" title="sciencescraper.pmc.get_full_text"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_full_text</span></code></a>(pmc_id[, chunk_size])</p></td>
+<td><p>Fetches the full text of an article from PMC given a PMC ID</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sciencescraper.pmc.search_pmc" title="sciencescraper.pmc.search_pmc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">search_pmc</span></code></a>(query[, sort, mindate, maxdate, reldate, ...])</p></td>
+<td><p>Searches PMC for articles given a query</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sciencescraper.pmc.check_new_articles" title="sciencescraper.pmc.check_new_articles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_new_articles</span></code></a>(query, days[, chunk_size])</p></td>
+<td><p>Get open access articles from PubMed Central that have been published after a specified date.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py function">
+<dt class="sig sig-object py" id="sciencescraper.pmc.get_article_info">
+<span class="sig-prename descclassname"><span class="pre">sciencescraper.pmc.</span></span><span class="sig-name descname"><span class="pre">get_article_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pmc_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/sciencescraper/pmc/pmc_scrape.html#get_article_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sciencescraper.pmc.get_article_info" title="Link to this definition"></a></dt>
+<dd><p>Fetches and parses an article from PMC given a PMC ID</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pmc_id</strong> (<em>str</em>) -- The PMC ID of the article</p></li>
+<li><p><strong>chunk_size</strong> (<em>int, optional</em>) -- The size of the chunks to split the full text into. Default is None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>article</strong> -- The parsed article</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sciencescraper.pmc.get_full_text">
+<span class="sig-prename descclassname"><span class="pre">sciencescraper.pmc.</span></span><span class="sig-name descname"><span class="pre">get_full_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pmc_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/sciencescraper/pmc/pmc_scrape.html#get_full_text"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sciencescraper.pmc.get_full_text" title="Link to this definition"></a></dt>
+<dd><p>Fetches the full text of an article from PMC given a PMC ID</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pmc_id</strong> (<em>str</em>) -- The PMC ID of the article</p></li>
+<li><p><strong>chunk_size</strong> (<em>int, optional</em>) -- The size of the chunks to split the full text into. Default is None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>full_text</strong> -- The full text of the article</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sciencescraper.pmc.search_pmc">
+<span class="sig-prename descclassname"><span class="pre">sciencescraper.pmc.</span></span><span class="sig-name descname"><span class="pre">search_pmc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'relevance'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mindate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxdate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reldate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retstart</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/sciencescraper/pmc/pmc_search.html#search_pmc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sciencescraper.pmc.search_pmc" title="Link to this definition"></a></dt>
+<dd><p>Searches PMC for articles given a query</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>query</strong> (<em>str</em>) -- The query to search for</p></li>
+<li><p><strong>sort</strong> (<em>str, optional</em>) -- The sorting order for the search results. Options are:
+- &quot;relevance&quot;: Sort by relevance
+- &quot;pub_date&quot;: Sort by publication date in descending order
+- &quot;JournalName&quot;: Sort by journal in ascending order
+- &quot;Author&quot;: Sort by first author in ascending order</p></li>
+<li><p><strong>mindate</strong> (<em>str, optional</em>) -- The minimum date for the search results. Format is &quot;YYYY/MM/DD&quot;, &quot;YYYY/MM&quot;, or &quot;YYYY&quot;. Must also provide maxdate</p></li>
+<li><p><strong>maxdate</strong> (<em>str, optional</em>) -- The maximum date for the search results. Format is &quot;YYYY/MM/DD&quot;, &quot;YYYY/MM&quot;, or &quot;YYYY&quot;. Must also provide mindate</p></li>
+<li><p><strong>reldate</strong> (<em>str, optional</em>) -- The number of days to search back from the current date.</p></li>
+<li><p><strong>retstart</strong> (<em>int, optional</em>) -- The index of the first article to return</p></li>
+<li><p><strong>retmax</strong> (<em>int, optional</em>) -- The maximum number of articles to return</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>pmc_ids</strong> -- The PMC IDs of the search results</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sciencescraper.pmc.check_new_articles">
+<span class="sig-prename descclassname"><span class="pre">sciencescraper.pmc.</span></span><span class="sig-name descname"><span class="pre">check_new_articles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">days</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/sciencescraper/pmc/pmc_search.html#check_new_articles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sciencescraper.pmc.check_new_articles" title="Link to this definition"></a></dt>
+<dd><p>Get open access articles from PubMed Central that have been published after a specified date.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>query</strong> (<em>str</em>) -- The query to search for</p></li>
+<li><p><strong>days</strong> (<em>int</em>) -- The number of days to search back from the current date.</p></li>
+<li><p><strong>chunk_size</strong> (<em>int, optional</em>) -- The size of the chunks to split the full text into</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>pmc_ids</strong> -- The PMC IDs of the search results</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="sciencescraper" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pmc_clean/index.html" class="btn btn-neutral float-right" title="sciencescraper.pmc.pmc_clean" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Joshua Blomgren. Project structure based on the Computational Molecular Science Python Cookiecutter version 1.1.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

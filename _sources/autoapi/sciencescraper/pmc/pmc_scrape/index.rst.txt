@@ -1,0 +1,70 @@
+:py:mod:`sciencescraper.pmc.pmc_scrape`
+=======================================
+
+.. py:module:: sciencescraper.pmc.pmc_scrape
+
+.. autoapi-nested-parse::
+
+   Functions for retrieving the raw text of PubMed Central articles.
+
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   sciencescraper.pmc.pmc_scrape.fetch_pmc_article
+   sciencescraper.pmc.pmc_scrape.parse_pmc_article
+   sciencescraper.pmc.pmc_scrape.get_article_info
+   sciencescraper.pmc.pmc_scrape.get_full_text
+
+
+
+.. py:function:: fetch_pmc_article(pmc_id)
+
+   Fetches an article from PMC given a PMC ID
+
+   :Parameters: **pmc_id** (*str*) -- The PMC ID of the article
+
+   :returns: **soup** -- The article as a BeautifulSoup object
+   :rtype: BeautifulSoup
+
+
+.. py:function:: parse_pmc_article(pmc_article, chunk_size)
+
+   Parses an article from PMC
+
+   :Parameters: * **pmc_article** (*BeautifulSoup*) -- The article as a BeautifulSoup object
+                * **chunk_size** (*int*) -- The size of the chunks to split the full text into
+
+   :returns: **article** -- The parsed article
+   :rtype: dict
+
+
+.. py:function:: get_article_info(pmc_id, chunk_size=None)
+
+   Fetches and parses an article from PMC given a PMC ID
+
+   :Parameters: * **pmc_id** (*str*) -- The PMC ID of the article
+                * **chunk_size** (*int, optional*) -- The size of the chunks to split the full text into. Default is None.
+
+   :returns: **article** -- The parsed article
+   :rtype: dict
+
+
+.. py:function:: get_full_text(pmc_id, chunk_size=None)
+
+   Fetches the full text of an article from PMC given a PMC ID
+
+   :Parameters: * **pmc_id** (*str*) -- The PMC ID of the article
+                * **chunk_size** (*int, optional*) -- The size of the chunks to split the full text into. Default is None.
+
+   :returns: **full_text** -- The full text of the article
+   :rtype: str
+
+

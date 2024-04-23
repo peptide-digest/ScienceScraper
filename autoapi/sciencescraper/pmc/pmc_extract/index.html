@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="Python" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sciencescraper.pmc.pmc_extract &mdash; ScienceScraper  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=1e580bb1"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="sciencescraper.pmc.pmc_scrape" href="../pmc_scrape/index.html" />
+    <link rel="prev" title="sciencescraper.pmc.pmc_clean" href="../pmc_clean/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            ScienceScraper
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sciencescraper</span></code></a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#id1"><p>Duplicate implicit target name: &quot;sciencescraper&quot;.</p>
+</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html#id2">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sciencescraper.pmc</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sciencedirect/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sciencescraper.sciencedirect</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#package-contents">Package Contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">ScienceScraper</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sciencescraper</span></code></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sciencescraper.pmc</span></code></a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sciencescraper.pmc.pmc_extract</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/autoapi/sciencescraper/pmc/pmc_extract/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-sciencescraper.pmc.pmc_extract">
+<span id="sciencescraper-pmc-pmc-extract"></span><h1><a class="reference internal" href="#module-sciencescraper.pmc.pmc_extract" title="sciencescraper.pmc.pmc_extract"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sciencescraper.pmc.pmc_extract</span></code></a><a class="headerlink" href="#module-sciencescraper.pmc.pmc_extract" title="Link to this heading"></a></h1>
+<p>Functions that extract information from the raw text of PubMed Central articles.</p>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sciencescraper.pmc.pmc_extract.get_title" title="sciencescraper.pmc.pmc_extract.get_title"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_title</span></code></a>(pmc_article)</p></td>
+<td><p>Returns the title of the article</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sciencescraper.pmc.pmc_extract.get_authors" title="sciencescraper.pmc.pmc_extract.get_authors"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_authors</span></code></a>(pmc_article)</p></td>
+<td><p>Returns the authors of the article</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sciencescraper.pmc.pmc_extract.get_journal" title="sciencescraper.pmc.pmc_extract.get_journal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_journal</span></code></a>(pmc_article)</p></td>
+<td><p>Returns the journal of the article</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sciencescraper.pmc.pmc_extract.get_publisher" title="sciencescraper.pmc.pmc_extract.get_publisher"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_publisher</span></code></a>(pmc_article)</p></td>
+<td><p>Returns the publisher of the article</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sciencescraper.pmc.pmc_extract.get_article_type" title="sciencescraper.pmc.pmc_extract.get_article_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_article_type</span></code></a>(pmc_article)</p></td>
+<td><p>Returns the article type of the article</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sciencescraper.pmc.pmc_extract.get_doi" title="sciencescraper.pmc.pmc_extract.get_doi"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_doi</span></code></a>(pmc_article)</p></td>
+<td><p>Returns the DOI of the article</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sciencescraper.pmc.pmc_extract.get_pmc_id" title="sciencescraper.pmc.pmc_extract.get_pmc_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_pmc_id</span></code></a>(pmc_article)</p></td>
+<td><p>Returns the PMC ID of the article</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sciencescraper.pmc.pmc_extract.get_date" title="sciencescraper.pmc.pmc_extract.get_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_date</span></code></a>(pmc_article)</p></td>
+<td><p>Returns the date of the article</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sciencescraper.pmc.pmc_extract.get_url" title="sciencescraper.pmc.pmc_extract.get_url"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_url</span></code></a>(pmc_article)</p></td>
+<td><p>Returns the URL of the article</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sciencescraper.pmc.pmc_extract.get_keywords" title="sciencescraper.pmc.pmc_extract.get_keywords"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_keywords</span></code></a>(pmc_article)</p></td>
+<td><p>Returns the keywords of the article</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sciencescraper.pmc.pmc_extract.get_abstract" title="sciencescraper.pmc.pmc_extract.get_abstract"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_abstract</span></code></a>(pmc_article)</p></td>
+<td><p>Returns the abstract of the article</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sciencescraper.pmc.pmc_extract.get_intro" title="sciencescraper.pmc.pmc_extract.get_intro"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_intro</span></code></a>(pmc_article)</p></td>
+<td><p>Returns the introduction section of the article</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sciencescraper.pmc.pmc_extract.get_methods" title="sciencescraper.pmc.pmc_extract.get_methods"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_methods</span></code></a>(pmc_article)</p></td>
+<td><p>Returns the methods section of the article</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sciencescraper.pmc.pmc_extract.get_discussion" title="sciencescraper.pmc.pmc_extract.get_discussion"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_discussion</span></code></a>(pmc_article)</p></td>
+<td><p>Returns the discussion section of the article</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sciencescraper.pmc.pmc_extract.clean_references" title="sciencescraper.pmc.pmc_extract.clean_references"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clean_references</span></code></a>(pmc_article)</p></td>
+<td><p>Removes the reference numbers from the article which can clutter the text in terms of</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py function">
+<dt class="sig sig-object py" id="sciencescraper.pmc.pmc_extract.get_title">
+<span class="sig-prename descclassname"><span class="pre">sciencescraper.pmc.pmc_extract.</span></span><span class="sig-name descname"><span class="pre">get_title</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pmc_article</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sciencescraper/pmc/pmc_extract.html#get_title"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sciencescraper.pmc.pmc_extract.get_title" title="Link to this definition"></a></dt>
+<dd><p>Returns the title of the article</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pmc_article</strong> (<em>BeautifulSoup</em>) -- The article as a BeautifulSoup object</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>title</strong> -- The title of the article</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sciencescraper.pmc.pmc_extract.get_authors">
+<span class="sig-prename descclassname"><span class="pre">sciencescraper.pmc.pmc_extract.</span></span><span class="sig-name descname"><span class="pre">get_authors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pmc_article</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sciencescraper/pmc/pmc_extract.html#get_authors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sciencescraper.pmc.pmc_extract.get_authors" title="Link to this definition"></a></dt>
+<dd><p>Returns the authors of the article</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pmc_article</strong> (<em>BeautifulSoup</em>) -- The article as a BeautifulSoup object</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>authors</strong> -- The authors of the article</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sciencescraper.pmc.pmc_extract.get_journal">
+<span class="sig-prename descclassname"><span class="pre">sciencescraper.pmc.pmc_extract.</span></span><span class="sig-name descname"><span class="pre">get_journal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pmc_article</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sciencescraper/pmc/pmc_extract.html#get_journal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sciencescraper.pmc.pmc_extract.get_journal" title="Link to this definition"></a></dt>
+<dd><p>Returns the journal of the article</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pmc_article</strong> (<em>BeautifulSoup</em>) -- The article as a BeautifulSoup object</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>journal</strong> -- The journal of the article</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sciencescraper.pmc.pmc_extract.get_publisher">
+<span class="sig-prename descclassname"><span class="pre">sciencescraper.pmc.pmc_extract.</span></span><span class="sig-name descname"><span class="pre">get_publisher</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pmc_article</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sciencescraper/pmc/pmc_extract.html#get_publisher"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sciencescraper.pmc.pmc_extract.get_publisher" title="Link to this definition"></a></dt>
+<dd><p>Returns the publisher of the article</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pmc_article</strong> (<em>BeautifulSoup</em>) -- The article as a BeautifulSoup object</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>publisher</strong> -- The publisher of the article</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sciencescraper.pmc.pmc_extract.get_article_type">
+<span class="sig-prename descclassname"><span class="pre">sciencescraper.pmc.pmc_extract.</span></span><span class="sig-name descname"><span class="pre">get_article_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pmc_article</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sciencescraper/pmc/pmc_extract.html#get_article_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sciencescraper.pmc.pmc_extract.get_article_type" title="Link to this definition"></a></dt>
+<dd><p>Returns the article type of the article</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pmc_article</strong> (<em>BeautifulSoup</em>) -- The article as a BeautifulSoup object</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>article_type</strong> -- The article type of the article</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sciencescraper.pmc.pmc_extract.get_doi">
+<span class="sig-prename descclassname"><span class="pre">sciencescraper.pmc.pmc_extract.</span></span><span class="sig-name descname"><span class="pre">get_doi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pmc_article</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sciencescraper/pmc/pmc_extract.html#get_doi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sciencescraper.pmc.pmc_extract.get_doi" title="Link to this definition"></a></dt>
+<dd><p>Returns the DOI of the article</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pmc_article</strong> (<em>BeautifulSoup</em>) -- The article as a BeautifulSoup object</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>doi</strong> -- The DOI of the article</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sciencescraper.pmc.pmc_extract.get_pmc_id">
+<span class="sig-prename descclassname"><span class="pre">sciencescraper.pmc.pmc_extract.</span></span><span class="sig-name descname"><span class="pre">get_pmc_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pmc_article</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sciencescraper/pmc/pmc_extract.html#get_pmc_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sciencescraper.pmc.pmc_extract.get_pmc_id" title="Link to this definition"></a></dt>
+<dd><p>Returns the PMC ID of the article</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pmc_article</strong> (<em>BeautifulSoup</em>) -- The article as a BeautifulSoup object</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>pmc_id</strong> -- The PMC ID of the article</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sciencescraper.pmc.pmc_extract.get_date">
+<span class="sig-prename descclassname"><span class="pre">sciencescraper.pmc.pmc_extract.</span></span><span class="sig-name descname"><span class="pre">get_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pmc_article</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sciencescraper/pmc/pmc_extract.html#get_date"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sciencescraper.pmc.pmc_extract.get_date" title="Link to this definition"></a></dt>
+<dd><p>Returns the date of the article</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pmc_article</strong> (<em>BeautifulSoup</em>) -- The article as a BeautifulSoup object</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>date</strong> -- The date of the article</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sciencescraper.pmc.pmc_extract.get_url">
+<span class="sig-prename descclassname"><span class="pre">sciencescraper.pmc.pmc_extract.</span></span><span class="sig-name descname"><span class="pre">get_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pmc_article</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sciencescraper/pmc/pmc_extract.html#get_url"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sciencescraper.pmc.pmc_extract.get_url" title="Link to this definition"></a></dt>
+<dd><p>Returns the URL of the article</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pmc_article</strong> (<em>BeautifulSoup</em>) -- The article as a BeautifulSoup object</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>url</strong> -- The URL of the article</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sciencescraper.pmc.pmc_extract.get_keywords">
+<span class="sig-prename descclassname"><span class="pre">sciencescraper.pmc.pmc_extract.</span></span><span class="sig-name descname"><span class="pre">get_keywords</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pmc_article</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sciencescraper/pmc/pmc_extract.html#get_keywords"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sciencescraper.pmc.pmc_extract.get_keywords" title="Link to this definition"></a></dt>
+<dd><p>Returns the keywords of the article</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pmc_article</strong> (<em>BeautifulSoup</em>) -- The article as a BeautifulSoup object</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>keywords</strong> -- The keywords of the article</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sciencescraper.pmc.pmc_extract.get_abstract">
+<span class="sig-prename descclassname"><span class="pre">sciencescraper.pmc.pmc_extract.</span></span><span class="sig-name descname"><span class="pre">get_abstract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pmc_article</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sciencescraper/pmc/pmc_extract.html#get_abstract"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sciencescraper.pmc.pmc_extract.get_abstract" title="Link to this definition"></a></dt>
+<dd><p>Returns the abstract of the article</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pmc_article</strong> (<em>BeautifulSoup</em>) -- The article as a BeautifulSoup object</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>abstract</strong> -- The abstract of the article</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sciencescraper.pmc.pmc_extract.get_intro">
+<span class="sig-prename descclassname"><span class="pre">sciencescraper.pmc.pmc_extract.</span></span><span class="sig-name descname"><span class="pre">get_intro</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pmc_article</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sciencescraper/pmc/pmc_extract.html#get_intro"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sciencescraper.pmc.pmc_extract.get_intro" title="Link to this definition"></a></dt>
+<dd><p>Returns the introduction section of the article</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pmc_article</strong> (<em>BeautifulSoup</em>) -- The article as a BeautifulSoup object</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>intro</strong> -- The introduction section of the article</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sciencescraper.pmc.pmc_extract.get_methods">
+<span class="sig-prename descclassname"><span class="pre">sciencescraper.pmc.pmc_extract.</span></span><span class="sig-name descname"><span class="pre">get_methods</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pmc_article</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sciencescraper/pmc/pmc_extract.html#get_methods"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sciencescraper.pmc.pmc_extract.get_methods" title="Link to this definition"></a></dt>
+<dd><p>Returns the methods section of the article</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pmc_article</strong> (<em>BeautifulSoup</em>) -- The article as a BeautifulSoup object</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>methods</strong> -- The methods section of the article</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sciencescraper.pmc.pmc_extract.get_discussion">
+<span class="sig-prename descclassname"><span class="pre">sciencescraper.pmc.pmc_extract.</span></span><span class="sig-name descname"><span class="pre">get_discussion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pmc_article</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sciencescraper/pmc/pmc_extract.html#get_discussion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sciencescraper.pmc.pmc_extract.get_discussion" title="Link to this definition"></a></dt>
+<dd><p>Returns the discussion section of the article</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pmc_article</strong> (<em>BeautifulSoup</em>) -- The article as a BeautifulSoup object</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>discussion</strong> -- The discussion section of the article</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sciencescraper.pmc.pmc_extract.clean_references">
+<span class="sig-prename descclassname"><span class="pre">sciencescraper.pmc.pmc_extract.</span></span><span class="sig-name descname"><span class="pre">clean_references</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pmc_article</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sciencescraper/pmc/pmc_extract.html#clean_references"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sciencescraper.pmc.pmc_extract.clean_references" title="Link to this definition"></a></dt>
+<dd><p>Removes the reference numbers from the article which can clutter the text in terms of
+readability and analysis by a machine learning model.</p>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../pmc_clean/index.html" class="btn btn-neutral float-left" title="sciencescraper.pmc.pmc_clean" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../pmc_scrape/index.html" class="btn btn-neutral float-right" title="sciencescraper.pmc.pmc_scrape" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Joshua Blomgren. Project structure based on the Computational Molecular Science Python Cookiecutter version 1.1.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

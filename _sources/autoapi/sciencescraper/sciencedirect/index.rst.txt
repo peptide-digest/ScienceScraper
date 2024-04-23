@@ -1,0 +1,113 @@
+:py:mod:`sciencescraper.sciencedirect`
+======================================
+
+.. py:module:: sciencescraper.sciencedirect
+
+.. autoapi-nested-parse::
+
+   ``sciencescraper.sciencedirect``
+   ================================
+
+   This subpackage contains modules for scraping articles from ScienceDirect.
+
+   Submodules
+   ----------
+   - ``scidir_extract``: Functions to extract information from the raw XML text of a ScienceDirect article.
+   - ``scidir_clean``: Functions to clean the text extracted from ScienceDirect articles.
+   - ``scidir_scrape``: Functions for retrieving the clean text of ScienceDirect articles.
+
+   The main function of this subpackage is ``get_article_info`` in ``scidir_scrape``. This function retrieves the
+   full text of a ScienceDirect article using the ScienceDirect API and returns a dictionary containing the title, authors,
+   journal, year, URL, open access status, keywords, abstract, methods, results, discussion, and references of the article.
+   ``search_scidir`` in ``scidir_search`` can be used to search for articles on ScienceDirect given a query string and a start date to
+   search from.
+
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   scidir_clean/index.rst
+   scidir_extract/index.rst
+   scidir_scrape/index.rst
+   scidir_search/index.rst
+
+
+Package Contents
+----------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   sciencescraper.sciencedirect.get_article_info
+   sciencescraper.sciencedirect.get_full_text
+   sciencescraper.sciencedirect.check_new_articles
+   sciencescraper.sciencedirect.search_scidir
+
+
+
+.. py:function:: get_article_info(api_key, doi=None, pii=None, url=None, chunk_size=None)
+
+   Get the full text of a ScienceDirect article using the ScienceDirect API.
+
+   :Parameters: * **api_key** (*str*) -- The API key for the ScienceDirect API. API keys can be obtained by creating an account at https://dev.elsevier.com/.
+                * **doi** (*str, optional*) -- The DOI of the article to be scraped.
+                * **pii** (*str, optional*) -- The PII of the article to be scraped.
+                * **url** (*str, optional*) -- The URL of the article to be scraped.
+                * **chunk_size** (*int, optional*) -- The size of the chunks to split the full text into. Default is None.
+
+   :returns: A dictionary containing the title, authors, journal, year, URL, open access status, keywords, abstract, methods,
+             results, discussion, and references of the article.
+   :rtype: dict
+
+
+.. py:function:: get_full_text(api_key, doi=None, pii=None, url=None, chunk_size=None)
+
+   Get the full text of a ScienceDirect article using the ScienceDirect API.
+
+   :Parameters: * **api_key** (*str*) -- The API key for the ScienceDirect API. API keys can be obtained by creating an account at https://dev.elsevier.com/.
+                * **doi** (*str, optional*) -- The DOI of the article to be scraped.
+                * **pii** (*str, optional*) -- The PII of the article to be scraped.
+                * **url** (*str, optional*) -- The URL of the article to be scraped.
+                * **chunk_size** (*int, optional*) -- The size of the chunks to split the full text into. Default is None.
+
+   :returns: The full text of the article.
+   :rtype: str
+
+
+.. py:function:: check_new_articles(api_key, query, days)
+
+   Check for new articles in Elsevier's ScienceDirect database and notify the user of any new articles.
+
+   :Parameters: * **api_key** (*str*) -- The API key for the ScienceDirect API. API keys can be obtained by creating an account at https://dev.elsevier.com/.
+                * **query** (*str*) -- The search query to be used to search for new articles.
+                * **days** (*int*) -- The number of days to search for new articles.
+
+   :returns: A list of dictionaries containing the title, authors, journal, year, URL, open access status, keywords, abstract,
+             methods, results, discussion, and references of the new articles.
+   :rtype: list of dict
+
+
+.. py:function:: search_scidir(api_key, query, sortBy='relevance', startDate=None, max_results=25, offset=0)
+
+   Get articles from Elsevier's ScienceDirect database that are relevant to a specified search query.
+
+   :Parameters: * **api_key** (*str*) -- The API key for the ScienceDirect API. API keys can be obtained by creating an account at https://dev.elsevier.com/.
+                * **query** (*str*) -- The search query to be used to search for articles.
+                * **sortBy** (*str, optional*) -- The sorting order for the search results. Options are:
+                  - "relevance": Sort by relevance
+                  - "date": Sort by date
+                  Default is "relevance".
+                * **startDate** (*str, optional*) -- The start date for the search query in the format 'YYYY-MM-DD'.
+                * **max_results** (*int, optional*) -- The maximum number of results to return. Default is 25. Permitted values: 10, 25, 50, 100.
+                * **offset** (*int, optional*) -- The number of results to skip. Default is 0.
+
+   :rtype: list of DOIs of the articles
+
+

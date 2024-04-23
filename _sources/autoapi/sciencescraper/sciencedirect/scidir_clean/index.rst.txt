@@ -1,0 +1,48 @@
+:py:mod:`sciencescraper.sciencedirect.scidir_clean`
+===================================================
+
+.. py:module:: sciencescraper.sciencedirect.scidir_clean
+
+.. autoapi-nested-parse::
+
+   Functions to clean the text extracted from ScienceDirect articles.
+
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   sciencescraper.sciencedirect.scidir_clean.clean_fulltext
+   sciencescraper.sciencedirect.scidir_clean.split_into_chunks
+
+
+
+.. py:function:: clean_fulltext(xml_text, chunk_size)
+
+   Clean the raw XML text of an ScienceDirect article to remove unnecessary information,
+   leaving only the full text of the article.
+
+   :Parameters: * **xml_text** (*str*) -- The raw XML text of an article.
+                * **chunk_size** (*int*) -- The size of the chunks to split the full text into.
+
+   :returns: List of the full text of the article, split into chunks
+   :rtype: list of str
+
+
+.. py:function:: split_into_chunks(text, chunk_size)
+
+   Splits a given text into chunks of approximately 'chunk_size' words.
+
+   :Parameters: * **text** (*str*) -- The text to split into chunks.
+                * **chunk_size** (*int*) -- The size of the chunks to split the text into.
+
+   :returns: List of the text split into chunks.
+   :rtype: list of str
+
+

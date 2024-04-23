@@ -1,0 +1,184 @@
+:py:mod:`sciencescraper.pmc.pmc_extract`
+========================================
+
+.. py:module:: sciencescraper.pmc.pmc_extract
+
+.. autoapi-nested-parse::
+
+   Functions that extract information from the raw text of PubMed Central articles.
+
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   sciencescraper.pmc.pmc_extract.get_title
+   sciencescraper.pmc.pmc_extract.get_authors
+   sciencescraper.pmc.pmc_extract.get_journal
+   sciencescraper.pmc.pmc_extract.get_publisher
+   sciencescraper.pmc.pmc_extract.get_article_type
+   sciencescraper.pmc.pmc_extract.get_doi
+   sciencescraper.pmc.pmc_extract.get_pmc_id
+   sciencescraper.pmc.pmc_extract.get_date
+   sciencescraper.pmc.pmc_extract.get_url
+   sciencescraper.pmc.pmc_extract.get_keywords
+   sciencescraper.pmc.pmc_extract.get_abstract
+   sciencescraper.pmc.pmc_extract.get_intro
+   sciencescraper.pmc.pmc_extract.get_methods
+   sciencescraper.pmc.pmc_extract.get_discussion
+   sciencescraper.pmc.pmc_extract.clean_references
+
+
+
+.. py:function:: get_title(pmc_article)
+
+   Returns the title of the article
+
+   :Parameters: **pmc_article** (*BeautifulSoup*) -- The article as a BeautifulSoup object
+
+   :returns: **title** -- The title of the article
+   :rtype: str
+
+
+.. py:function:: get_authors(pmc_article)
+
+   Returns the authors of the article
+
+   :Parameters: **pmc_article** (*BeautifulSoup*) -- The article as a BeautifulSoup object
+
+   :returns: **authors** -- The authors of the article
+   :rtype: list
+
+
+.. py:function:: get_journal(pmc_article)
+
+   Returns the journal of the article
+
+   :Parameters: **pmc_article** (*BeautifulSoup*) -- The article as a BeautifulSoup object
+
+   :returns: **journal** -- The journal of the article
+   :rtype: str
+
+
+.. py:function:: get_publisher(pmc_article)
+
+   Returns the publisher of the article
+
+   :Parameters: **pmc_article** (*BeautifulSoup*) -- The article as a BeautifulSoup object
+
+   :returns: **publisher** -- The publisher of the article
+   :rtype: str
+
+
+.. py:function:: get_article_type(pmc_article)
+
+   Returns the article type of the article
+
+   :Parameters: **pmc_article** (*BeautifulSoup*) -- The article as a BeautifulSoup object
+
+   :returns: **article_type** -- The article type of the article
+   :rtype: str
+
+
+.. py:function:: get_doi(pmc_article)
+
+   Returns the DOI of the article
+
+   :Parameters: **pmc_article** (*BeautifulSoup*) -- The article as a BeautifulSoup object
+
+   :returns: **doi** -- The DOI of the article
+   :rtype: str
+
+
+.. py:function:: get_pmc_id(pmc_article)
+
+   Returns the PMC ID of the article
+
+   :Parameters: **pmc_article** (*BeautifulSoup*) -- The article as a BeautifulSoup object
+
+   :returns: **pmc_id** -- The PMC ID of the article
+   :rtype: str
+
+
+.. py:function:: get_date(pmc_article)
+
+   Returns the date of the article
+
+   :Parameters: **pmc_article** (*BeautifulSoup*) -- The article as a BeautifulSoup object
+
+   :returns: **date** -- The date of the article
+   :rtype: str
+
+
+.. py:function:: get_url(pmc_article)
+
+   Returns the URL of the article
+
+   :Parameters: **pmc_article** (*BeautifulSoup*) -- The article as a BeautifulSoup object
+
+   :returns: **url** -- The URL of the article
+   :rtype: str
+
+
+.. py:function:: get_keywords(pmc_article)
+
+   Returns the keywords of the article
+
+   :Parameters: **pmc_article** (*BeautifulSoup*) -- The article as a BeautifulSoup object
+
+   :returns: **keywords** -- The keywords of the article
+   :rtype: list
+
+
+.. py:function:: get_abstract(pmc_article)
+
+   Returns the abstract of the article
+
+   :Parameters: **pmc_article** (*BeautifulSoup*) -- The article as a BeautifulSoup object
+
+   :returns: **abstract** -- The abstract of the article
+   :rtype: str
+
+
+.. py:function:: get_intro(pmc_article)
+
+   Returns the introduction section of the article
+
+   :Parameters: **pmc_article** (*BeautifulSoup*) -- The article as a BeautifulSoup object
+
+   :returns: **intro** -- The introduction section of the article
+   :rtype: str
+
+
+.. py:function:: get_methods(pmc_article)
+
+   Returns the methods section of the article
+
+   :Parameters: **pmc_article** (*BeautifulSoup*) -- The article as a BeautifulSoup object
+
+   :returns: **methods** -- The methods section of the article
+   :rtype: str
+
+
+.. py:function:: get_discussion(pmc_article)
+
+   Returns the discussion section of the article
+
+   :Parameters: **pmc_article** (*BeautifulSoup*) -- The article as a BeautifulSoup object
+
+   :returns: **discussion** -- The discussion section of the article
+   :rtype: str
+
+
+.. py:function:: clean_references(pmc_article)
+
+   Removes the reference numbers from the article which can clutter the text in terms of
+   readability and analysis by a machine learning model.
+
+

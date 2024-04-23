@@ -1,0 +1,199 @@
+:py:mod:`sciencescraper.sciencedirect.scidir_extract`
+=====================================================
+
+.. py:module:: sciencescraper.sciencedirect.scidir_extract
+
+.. autoapi-nested-parse::
+
+   Functions that extract information from the raw text of ScienceDirect articles.
+
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   sciencescraper.sciencedirect.scidir_extract.get_title
+   sciencescraper.sciencedirect.scidir_extract.get_authors
+   sciencescraper.sciencedirect.scidir_extract.get_journal
+   sciencescraper.sciencedirect.scidir_extract.get_publisher
+   sciencescraper.sciencedirect.scidir_extract.get_article_type
+   sciencescraper.sciencedirect.scidir_extract.get_date
+   sciencescraper.sciencedirect.scidir_extract.get_url
+   sciencescraper.sciencedirect.scidir_extract.get_doi
+   sciencescraper.sciencedirect.scidir_extract.get_pii
+   sciencescraper.sciencedirect.scidir_extract.get_open_access
+   sciencescraper.sciencedirect.scidir_extract.get_keywords
+   sciencescraper.sciencedirect.scidir_extract.get_abstract
+   sciencescraper.sciencedirect.scidir_extract.get_methods
+   sciencescraper.sciencedirect.scidir_extract.get_results
+   sciencescraper.sciencedirect.scidir_extract.get_discussion
+   sciencescraper.sciencedirect.scidir_extract.get_references
+
+
+
+.. py:function:: get_title(xml_text)
+
+   Get the title of a ScienceDirect article from the article's raw XML text.
+
+   :Parameters: **xml_text** (*str*) -- The raw XML text of an article.
+
+   :returns: The title of the article.
+   :rtype: str
+
+
+.. py:function:: get_authors(xml_text)
+
+   Get the authors of a ScienceDirect article from the article's raw XML text.
+
+   :Parameters: **xml_text** (*str*) -- The raw XML text of an article.
+
+   :returns: The authors of the article in the format [First Name Last Name].
+   :rtype: list
+
+
+.. py:function:: get_journal(xml_text)
+
+   Get the journal of a ScienceDirect article from the article's raw XML text.
+
+   :Parameters: **xml_text** (*str*) -- The raw XML text of an article.
+
+   :returns: The journal of the article.
+   :rtype: str
+
+
+.. py:function:: get_publisher(xml_text)
+
+   Get the publisher of a ScienceDirect article from the article's raw XML text.
+
+   :Parameters: **xml_text** (*str*) -- The raw XML text of an article.
+
+   :returns: The publisher of the article.
+   :rtype: str
+
+
+.. py:function:: get_article_type(xml_text)
+
+   Get the article type of a ScienceDirect article from the article's raw XML text.
+
+   :Parameters: **xml_text** (*str*) -- The raw XML text of an article.
+
+   :returns: The article type of the article.
+   :rtype: str
+
+
+.. py:function:: get_date(xml_text)
+
+   Get the date of a ScienceDirect article from the article's raw XML text.
+
+   :Parameters: **xml_text** (*str*) -- The raw XML text of an article.
+
+   :returns: The date of the article.
+   :rtype: str
+
+
+.. py:function:: get_url(xml_text)
+
+   Get the URL of a ScienceDirect article from the article's raw XML text.
+
+   :Parameters: **xml_text** (*str*) -- The raw XML text of an article.
+
+   :returns: The URL of the article.
+   :rtype: str
+
+
+.. py:function:: get_doi(xml_text)
+
+   Get the DOI of a ScienceDirect article from the article's raw XML text.
+
+   :Parameters: **xml_text** (*str*) -- The raw XML text of an article.
+
+   :returns: The DOI of the article.
+   :rtype: str
+
+
+.. py:function:: get_pii(xml_text)
+
+   Get the PII of a ScienceDirect article from the article's raw XML text.
+
+   :Parameters: **xml_text** (*str*) -- The raw XML text of an article.
+
+   :returns: The PII of the article.
+   :rtype: str
+
+
+.. py:function:: get_open_access(xml_text)
+
+   Get the open access status of a ScienceDirect article from the article's raw XML text.
+
+   :Parameters: **xml_text** (*str*) -- The raw XML text of an article.
+
+   :returns: The open access status of the article.
+   :rtype: str
+
+
+.. py:function:: get_keywords(xml_text)
+
+   Get the keywords of a ScienceDirect article from the article's raw XML text.
+
+   :Parameters: **xml_text** (*str*) -- The raw XML text of an article.
+
+   :returns: A list of the keywords of the article.
+   :rtype: list
+
+
+.. py:function:: get_abstract(xml_text)
+
+   Get the abstract of a ScienceDirect article from the article's raw XML text.
+
+   :Parameters: **xml_text** (*str*) -- The raw XML text of an article.
+
+   :returns: The abstract of the article.
+   :rtype: str
+
+
+.. py:function:: get_methods(xml_text)
+
+   Get the methods section of a ScienceDirect article from the article's raw XML text.
+
+   :Parameters: **xml_text** (*str*) -- The raw XML text of an article.
+
+   :returns: The methods section of the article.
+   :rtype: str
+
+
+.. py:function:: get_results(xml_text)
+
+   Get the results section of a ScienceDirect article from the article's raw XML text.
+
+   :Parameters: **xml_text** (*str*) -- The raw XML text of an article.
+
+   :returns: The results section of the article.
+   :rtype: str
+
+
+.. py:function:: get_discussion(xml_text)
+
+   Get the discussion section of a ScienceDirect article from the article's raw XML text.
+
+   :Parameters: **xml_text** (*str*) -- The raw XML text of an article.
+
+   :returns: The discussion section of the article.
+   :rtype: str
+
+
+.. py:function:: get_references(xml_text)
+
+   Get the references section of a ScienceDirect article from the article's raw XML text.
+
+   :Parameters: **xml_text** (*str*) -- The raw XML text of an article.
+
+   :returns: The title of the references used in the references section of the article.
+   :rtype: str
+
+

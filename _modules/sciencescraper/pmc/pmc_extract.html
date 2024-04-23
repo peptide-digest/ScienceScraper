@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="Python" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sciencescraper.pmc.pmc_extract &mdash; ScienceScraper  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=1e580bb1"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            ScienceScraper
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ScienceScraper</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">sciencescraper.pmc.pmc_extract</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for sciencescraper.pmc.pmc_extract</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Functions that extract information from the raw text of PubMed Central articles.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">re</span>
+
+
+<div class="viewcode-block" id="get_title">
+<a class="viewcode-back" href="../../../autoapi/sciencescraper/pmc/pmc_extract/index.html#sciencescraper.pmc.pmc_extract.get_title">[docs]</a>
+<span class="k">def</span> <span class="nf">get_title</span><span class="p">(</span><span class="n">pmc_article</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the title of the article</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pmc_article : BeautifulSoup</span>
+<span class="sd">        The article as a BeautifulSoup object</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    title : str</span>
+<span class="sd">        The title of the article</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">pmc_article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;article-title&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">pmc_article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;article-title&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">title</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">title</span></div>
+
+
+
+<div class="viewcode-block" id="get_authors">
+<a class="viewcode-back" href="../../../autoapi/sciencescraper/pmc/pmc_extract/index.html#sciencescraper.pmc.pmc_extract.get_authors">[docs]</a>
+<span class="k">def</span> <span class="nf">get_authors</span><span class="p">(</span><span class="n">pmc_article</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the authors of the article</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pmc_article : BeautifulSoup</span>
+<span class="sd">        The article as a BeautifulSoup object</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    authors : list</span>
+<span class="sd">        The authors of the article</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">authors</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">author</span> <span class="ow">in</span> <span class="n">pmc_article</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">author</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">surname</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">author</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;surname&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">if</span> <span class="n">author</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;surname&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+            <span class="p">)</span>
+            <span class="n">given_names</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">author</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;given-names&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">author</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;given-names&quot;</span><span class="p">)</span>
+                <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+            <span class="p">)</span>
+            <span class="n">full_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">given_names</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">surname</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="n">authors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">full_name</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">authors</span></div>
+
+
+
+<div class="viewcode-block" id="get_journal">
+<a class="viewcode-back" href="../../../autoapi/sciencescraper/pmc/pmc_extract/index.html#sciencescraper.pmc.pmc_extract.get_journal">[docs]</a>
+<span class="k">def</span> <span class="nf">get_journal</span><span class="p">(</span><span class="n">pmc_article</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the journal of the article</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pmc_article : BeautifulSoup</span>
+<span class="sd">        The article as a BeautifulSoup object</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    journal : str</span>
+<span class="sd">        The journal of the article</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">pmc_article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;journal-title&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="n">pmc_article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;journal-title&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span></div>
+
+
+
+<div class="viewcode-block" id="get_publisher">
+<a class="viewcode-back" href="../../../autoapi/sciencescraper/pmc/pmc_extract/index.html#sciencescraper.pmc.pmc_extract.get_publisher">[docs]</a>
+<span class="k">def</span> <span class="nf">get_publisher</span><span class="p">(</span><span class="n">pmc_article</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the publisher of the article</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pmc_article : BeautifulSoup</span>
+<span class="sd">        The article as a BeautifulSoup object</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    publisher : str</span>
+<span class="sd">        The publisher of the article</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">pmc_article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;publisher-name&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="n">pmc_article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;publisher-name&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span></div>
+
+
+
+<div class="viewcode-block" id="get_article_type">
+<a class="viewcode-back" href="../../../autoapi/sciencescraper/pmc/pmc_extract/index.html#sciencescraper.pmc.pmc_extract.get_article_type">[docs]</a>
+<span class="k">def</span> <span class="nf">get_article_type</span><span class="p">(</span><span class="n">pmc_article</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the article type of the article</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pmc_article : BeautifulSoup</span>
+<span class="sd">        The article as a BeautifulSoup object</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    article_type : str</span>
+<span class="sd">        The article type of the article</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">pmc_article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;article&quot;</span><span class="p">)[</span><span class="s2">&quot;article-type&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="n">pmc_article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;article&quot;</span><span class="p">)[</span><span class="s2">&quot;article-type&quot;</span><span class="p">]</span></div>
+
+
+
+<div class="viewcode-block" id="get_doi">
+<a class="viewcode-back" href="../../../autoapi/sciencescraper/pmc/pmc_extract/index.html#sciencescraper.pmc.pmc_extract.get_doi">[docs]</a>
+<span class="k">def</span> <span class="nf">get_doi</span><span class="p">(</span><span class="n">pmc_article</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the DOI of the article</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pmc_article : BeautifulSoup</span>
+<span class="sd">        The article as a BeautifulSoup object</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    doi : str</span>
+<span class="sd">        The DOI of the article</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">pmc_article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;article-id&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;pub-id-type&quot;</span><span class="p">:</span> <span class="s2">&quot;doi&quot;</span><span class="p">})</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="n">pmc_article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;article-id&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;pub-id-type&quot;</span><span class="p">:</span> <span class="s2">&quot;doi&quot;</span><span class="p">})</span><span class="o">.</span><span class="n">text</span></div>
+
+
+
+<div class="viewcode-block" id="get_pmc_id">
+<a class="viewcode-back" href="../../../autoapi/sciencescraper/pmc/pmc_extract/index.html#sciencescraper.pmc.pmc_extract.get_pmc_id">[docs]</a>
+<span class="k">def</span> <span class="nf">get_pmc_id</span><span class="p">(</span><span class="n">pmc_article</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the PMC ID of the article</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pmc_article : BeautifulSoup</span>
+<span class="sd">        The article as a BeautifulSoup object</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pmc_id : str</span>
+<span class="sd">        The PMC ID of the article</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">pmc_article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;article-id&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;pub-id-type&quot;</span><span class="p">:</span> <span class="s2">&quot;pmc&quot;</span><span class="p">})</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="n">pmc_article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;article-id&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;pub-id-type&quot;</span><span class="p">:</span> <span class="s2">&quot;pmc&quot;</span><span class="p">})</span><span class="o">.</span><span class="n">text</span></div>
+
+
+
+<div class="viewcode-block" id="get_date">
+<a class="viewcode-back" href="../../../autoapi/sciencescraper/pmc/pmc_extract/index.html#sciencescraper.pmc.pmc_extract.get_date">[docs]</a>
+<span class="k">def</span> <span class="nf">get_date</span><span class="p">(</span><span class="n">pmc_article</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the date of the article</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pmc_article : BeautifulSoup</span>
+<span class="sd">        The article as a BeautifulSoup object</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    date : str</span>
+<span class="sd">        The date of the article</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">pmc_article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;pub-date&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="n">pub_date</span> <span class="o">=</span> <span class="n">pmc_article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;pub-date&quot;</span><span class="p">)</span>
+    <span class="n">day</span> <span class="o">=</span> <span class="n">pub_date</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;day&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="k">if</span> <span class="n">pub_date</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;day&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">month</span> <span class="o">=</span> <span class="n">pub_date</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;month&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="k">if</span> <span class="n">pub_date</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;month&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">year</span> <span class="o">=</span> <span class="n">pub_date</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="k">if</span> <span class="n">pub_date</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">date</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">month</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">day</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="k">return</span> <span class="n">date</span></div>
+
+
+
+<div class="viewcode-block" id="get_url">
+<a class="viewcode-back" href="../../../autoapi/sciencescraper/pmc/pmc_extract/index.html#sciencescraper.pmc.pmc_extract.get_url">[docs]</a>
+<span class="k">def</span> <span class="nf">get_url</span><span class="p">(</span><span class="n">pmc_article</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the URL of the article</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pmc_article : BeautifulSoup</span>
+<span class="sd">        The article as a BeautifulSoup object</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    url : str</span>
+<span class="sd">        The URL of the article</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pmc_id</span> <span class="o">=</span> <span class="n">get_pmc_id</span><span class="p">(</span><span class="n">pmc_article</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">pmc_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;https://www.ncbi.nlm.nih.gov/pmc/articles/</span><span class="si">{</span><span class="n">pmc_id</span><span class="si">}</span><span class="s2">/&quot;</span></div>
+
+
+
+<div class="viewcode-block" id="get_keywords">
+<a class="viewcode-back" href="../../../autoapi/sciencescraper/pmc/pmc_extract/index.html#sciencescraper.pmc.pmc_extract.get_keywords">[docs]</a>
+<span class="k">def</span> <span class="nf">get_keywords</span><span class="p">(</span><span class="n">pmc_article</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the keywords of the article</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pmc_article : BeautifulSoup</span>
+<span class="sd">        The article as a BeautifulSoup object</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    keywords : list</span>
+<span class="sd">        The keywords of the article</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">keywords</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="n">pmc_article</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;kwd&quot;</span><span class="p">):</span>
+        <span class="n">keywords</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">keyword</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">keywords</span></div>
+
+
+
+<div class="viewcode-block" id="get_abstract">
+<a class="viewcode-back" href="../../../autoapi/sciencescraper/pmc/pmc_extract/index.html#sciencescraper.pmc.pmc_extract.get_abstract">[docs]</a>
+<span class="k">def</span> <span class="nf">get_abstract</span><span class="p">(</span><span class="n">pmc_article</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the abstract of the article</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pmc_article : BeautifulSoup</span>
+<span class="sd">        The article as a BeautifulSoup object</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    abstract : str</span>
+<span class="sd">        The abstract of the article</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">pmc_article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;abstract&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="n">abstract</span> <span class="o">=</span> <span class="n">pmc_article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;abstract&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+    <span class="c1"># clean up text</span>
+    <span class="n">abstract</span> <span class="o">=</span> <span class="n">abstract</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;−&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="n">abstract</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">abstract</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+    <span class="n">abstract</span> <span class="o">=</span> <span class="n">clean_references</span><span class="p">(</span><span class="n">abstract</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">abstract</span></div>
+
+
+
+<div class="viewcode-block" id="get_intro">
+<a class="viewcode-back" href="../../../autoapi/sciencescraper/pmc/pmc_extract/index.html#sciencescraper.pmc.pmc_extract.get_intro">[docs]</a>
+<span class="k">def</span> <span class="nf">get_intro</span><span class="p">(</span><span class="n">pmc_article</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the introduction section of the article</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pmc_article : BeautifulSoup</span>
+<span class="sd">        The article as a BeautifulSoup object</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    intro : str</span>
+<span class="sd">        The introduction section of the article</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">pmc_article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;body&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="n">body</span> <span class="o">=</span> <span class="n">pmc_article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;body&quot;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">fig</span> <span class="ow">in</span> <span class="n">body</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;fig&quot;</span><span class="p">):</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">table</span> <span class="ow">in</span> <span class="n">body</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;table-wrap&quot;</span><span class="p">):</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span>
+
+    <span class="n">intro</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="k">for</span> <span class="n">sec</span> <span class="ow">in</span> <span class="n">body</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;sec&quot;</span><span class="p">):</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">sec</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="s2">&quot;introduction&quot;</span> <span class="ow">in</span> <span class="n">title</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="n">sec</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;p&quot;</span><span class="p">)</span>
+            <span class="n">section_content</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="k">for</span> <span class="n">para</span> <span class="ow">in</span> <span class="n">content</span><span class="p">:</span>
+                <span class="n">section_content</span> <span class="o">+=</span> <span class="n">para</span><span class="o">.</span><span class="n">get_text</span><span class="p">(</span><span class="n">separator</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span>
+
+            <span class="c1"># Clean up text</span>
+            <span class="n">section_content</span> <span class="o">=</span> <span class="n">section_content</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;−&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="n">section_content</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">section_content</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+
+            <span class="n">intro</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">section_content</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="n">intro</span> <span class="o">=</span> <span class="n">clean_references</span><span class="p">(</span><span class="n">intro</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">intro</span></div>
+
+
+
+<div class="viewcode-block" id="get_methods">
+<a class="viewcode-back" href="../../../autoapi/sciencescraper/pmc/pmc_extract/index.html#sciencescraper.pmc.pmc_extract.get_methods">[docs]</a>
+<span class="k">def</span> <span class="nf">get_methods</span><span class="p">(</span><span class="n">pmc_article</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the methods section of the article</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pmc_article : BeautifulSoup</span>
+<span class="sd">        The article as a BeautifulSoup object</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    methods : str</span>
+<span class="sd">        The methods section of the article</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">pmc_article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;body&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="n">body</span> <span class="o">=</span> <span class="n">pmc_article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;body&quot;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">fig</span> <span class="ow">in</span> <span class="n">body</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;fig&quot;</span><span class="p">):</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">table</span> <span class="ow">in</span> <span class="n">body</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;table-wrap&quot;</span><span class="p">):</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span>
+
+    <span class="n">methods</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="k">for</span> <span class="n">sec</span> <span class="ow">in</span> <span class="n">body</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;sec&quot;</span><span class="p">):</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">sec</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="s2">&quot;method&quot;</span> <span class="ow">in</span> <span class="n">title</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="n">sec</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;p&quot;</span><span class="p">)</span>
+            <span class="n">section_content</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="k">for</span> <span class="n">para</span> <span class="ow">in</span> <span class="n">content</span><span class="p">:</span>
+                <span class="n">section_content</span> <span class="o">+=</span> <span class="n">para</span><span class="o">.</span><span class="n">get_text</span><span class="p">(</span><span class="n">separator</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span>
+
+            <span class="c1"># Clean up text</span>
+            <span class="n">section_content</span> <span class="o">=</span> <span class="n">section_content</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;−&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="n">section_content</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">section_content</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+
+            <span class="n">methods</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">section_content</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+
+    <span class="n">methods</span> <span class="o">=</span> <span class="n">clean_references</span><span class="p">(</span><span class="n">methods</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">methods</span></div>
+
+
+
+<div class="viewcode-block" id="get_discussion">
+<a class="viewcode-back" href="../../../autoapi/sciencescraper/pmc/pmc_extract/index.html#sciencescraper.pmc.pmc_extract.get_discussion">[docs]</a>
+<span class="k">def</span> <span class="nf">get_discussion</span><span class="p">(</span><span class="n">pmc_article</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the discussion section of the article</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pmc_article : BeautifulSoup</span>
+<span class="sd">        The article as a BeautifulSoup object</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    discussion : str</span>
+<span class="sd">        The discussion section of the article</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">pmc_article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;body&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="n">body</span> <span class="o">=</span> <span class="n">pmc_article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;body&quot;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">fig</span> <span class="ow">in</span> <span class="n">body</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;fig&quot;</span><span class="p">):</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">table</span> <span class="ow">in</span> <span class="n">body</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;table-wrap&quot;</span><span class="p">):</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span>
+
+    <span class="n">discussion</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="k">for</span> <span class="n">sec</span> <span class="ow">in</span> <span class="n">body</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;sec&quot;</span><span class="p">):</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">sec</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="s2">&quot;discussion&quot;</span> <span class="ow">in</span> <span class="n">title</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="n">sec</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;p&quot;</span><span class="p">)</span>
+            <span class="n">section_content</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="k">for</span> <span class="n">para</span> <span class="ow">in</span> <span class="n">content</span><span class="p">:</span>
+                <span class="n">section_content</span> <span class="o">+=</span> <span class="n">para</span><span class="o">.</span><span class="n">get_text</span><span class="p">(</span><span class="n">separator</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span>
+
+            <span class="c1"># Clean up text</span>
+            <span class="n">section_content</span> <span class="o">=</span> <span class="n">section_content</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;−&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="n">section_content</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">section_content</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+
+            <span class="n">discussion</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">section_content</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+
+    <span class="n">discussion</span> <span class="o">=</span> <span class="n">clean_references</span><span class="p">(</span><span class="n">discussion</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">discussion</span></div>
+
+
+
+<div class="viewcode-block" id="clean_references">
+<a class="viewcode-back" href="../../../autoapi/sciencescraper/pmc/pmc_extract/index.html#sciencescraper.pmc.pmc_extract.clean_references">[docs]</a>
+<span class="k">def</span> <span class="nf">clean_references</span><span class="p">(</span><span class="n">pmc_article</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Removes the reference numbers from the article which can clutter the text in terms of</span>
+<span class="sd">    readability and analysis by a machine learning model.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;\[[\d\s,]+\]&quot;</span>
+    <span class="n">cleaned_text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">pmc_article</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cleaned_text</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Joshua Blomgren. Project structure based on the Computational Molecular Science Python Cookiecutter version 1.1.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
