@@ -99,7 +99,7 @@ def get_article_info(pmc_id, chunk_size=None):
     pmc_id : str
         The PMC ID of the article
 
-    chunk_size : int
+    chunk_size : int, optional
         The size of the chunks to split the full text into. Default is None.
 
     Returns
@@ -123,7 +123,7 @@ def get_full_text(pmc_id, chunk_size=None):
     pmc_id : str
         The PMC ID of the article
 
-    chunk_size : int
+    chunk_size : int, optional
         The size of the chunks to split the full text into. Default is None.
 
     Returns

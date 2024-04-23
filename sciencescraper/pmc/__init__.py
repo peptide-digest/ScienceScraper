@@ -1,5 +1,5 @@
 """
-``articlescraper.pmc``
+``sciencescraper.pmc``
 ======================
 
 This subpackage contains modules for scraping articles from PubMed Central.
