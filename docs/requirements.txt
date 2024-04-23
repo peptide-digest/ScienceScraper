@@ -1,5 +1,5 @@
 sphinx
-sphinx_rtd_theme
+pydata_sphinx_theme
 sphinx-autoapi
 lxml==5.1.0
 requests
