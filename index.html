@@ -30,6 +30,8 @@
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
@@ -39,6 +41,9 @@
     <script src="_static/documentation_options.js?v=5929fcd5"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -114,8 +119,16 @@
   
   
   
+    
+    
+      
+    
+    
+    <img src="_static/pd-logo.png" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="_static/pd-logo.png" class="logo__image only-dark" alt=""/>`);</script>
   
-    <p class="title logo__title">ScienceScraper  documentation</p>
+  
+    <p class="title logo__title">ScienceScraper</p>
   
 </a></div>
     
@@ -132,6 +145,20 @@
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="getting_started.html">
                         Getting Started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="user_guide/index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="contributing.html">
+                        How to Contribute
                       </a>
                     </li>
                 
@@ -176,6 +203,22 @@ document.write(`
   </button>
 `);
 </script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/peptide-digest/ScienceScraper" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
       
     </div>
     
@@ -234,6 +277,20 @@ document.write(`
                 
 
                     <li class="nav-item">
+                      <a class="nav-link nav-internal" href="user_guide/index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="contributing.html">
+                        How to Contribute
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
                       <a class="nav-link nav-internal" href="autoapi/index.html">
                         API Reference
                       </a>
@@ -259,6 +316,22 @@ document.write(`
   </button>
 `);
 </script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/peptide-digest/ScienceScraper" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
         
       </div>
     
@@ -289,34 +362,79 @@ document.write(`
                   
   <section id="welcome-to-sciencescraper">
 <h1>Welcome to ScienceScraper!<a class="headerlink" href="#welcome-to-sciencescraper" title="Link to this heading">#</a></h1>
-<a class="reference internal image-reference" href="_images/logo.png"><img alt="_images/logo.png" class="align-center" src="_images/logo.png" style="width: 150px;" />
+<a class="only-light reference internal image-reference" href="_images/pd-logo.png"><img alt="_images/pd-logo.png" class="only-light align-center" src="_images/pd-logo.png" style="width: 250px;" />
 </a>
-<p>ScienceScraper is a Python package that allows you to scrape scientific articles from various publishers through
+<a class="only-dark reference internal image-reference" href="_images/pd-logo.png"><img alt="_images/pd-logo.png" class="only-dark align-center" src="_images/pd-logo.png" style="width: 250px;" />
+</a>
+<p>ScienceScraper is an Python package that allows you to scrape scientific articles from various publishers through
 ScienceDirect and PubMedCentral. Designed to be used for training large machine learning models, ScienceScraper
 provides a simple API to retrieve clean and structured data from scientific articles directly from their DOIs, PIIs, PMIDs, or URLs.</p>
-<div class="toctree-wrapper compound">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#installation">Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#usage">Usage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#examples">Examples</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="autoapi/index.html">API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="autoapi/sciencescraper/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sciencescraper</span></code></a></li>
-</ul>
-</li>
-</ul>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 sd-pt-2 sd-pb-2 sd-pl-0 sd-pr-0 sd-text-center docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-4 sd-g-xs-4 sd-g-sm-4 sd-g-md-4 sd-g-lg-4 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Getting Started</div>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/getting_started.svg"><img alt="_images/getting_started.svg" src="_images/getting_started.svg" width="30%" /></a>
+</figure>
+<p class="sd-card-text">Learn how to install and use ScienceScraper to search and retrieve scientific publications.</p>
+<p class="sd-card-text"><span class="sd-d-grid"><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-primary reference external" href="./getting_started.html"><span>Let’s get started!</span></a></span></p>
 </div>
-</section>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+User Guide</div>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/user_guide.svg"><img alt="_images/user_guide.svg" src="_images/user_guide.svg" width="30%" /></a>
+</figure>
+<p class="sd-card-text">Dive into the details of the ScienceScraper with a comprehensive tutorial.</p>
+<p class="sd-card-text"><span class="sd-d-grid"><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-primary reference external" href="./user_guide/index.html"><span>Learn more!</span></a></span></p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+API Reference</div>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/api_reference.svg"><img alt="_images/api_reference.svg" src="_images/api_reference.svg" width="30%" /></a>
+</figure>
+<p class="sd-card-text">Explore the ScienceScraper API reference to find out more about the available modules and functions.</p>
+<p class="sd-card-text"><span class="sd-d-grid"><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-primary reference external" href="./autoapi/index.html"><span>Explore the API!</span></a></span></p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Contributing</div>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/contributing.svg"><img alt="_images/contributing.svg" src="_images/contributing.svg" width="30%" /></a>
+</figure>
+<p class="sd-card-text">Want to add something new? Contribute to the ScienceScraper project through GitHub.</p>
+<p class="sd-card-text"><span class="sd-d-grid"><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-primary reference external" href="./contributing.html"><span>Learn how to contribute!</span></a></span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="toctree-wrapper compound">
+</div>
 <section id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading">#</a></h1>
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
 <li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
 <li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
 </ul>
+</section>
 </section>
 
 
@@ -356,10 +474,8 @@ provides a simple API to retrieve clean and structured data from scientific arti
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Welcome to ScienceScraper!</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#indices-and-tables">Indices and tables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indices-and-tables">Indices and tables</a></li>
 </ul>
-
   </nav></div>
 
   <div class="sidebar-secondary-item">

@@ -1,0 +1,692 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Scraping PubMedCentral (PMC) &#8212; ScienceScraper  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/pmc';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="How to Contribute" href="../contributing.html" />
+    <link rel="prev" title="Scraping ScienceDirect" href="sciencedirect.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/pd-logo.png" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="../_static/pd-logo.png" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">ScienceScraper</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../getting_started.html">
+                        Getting Started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../contributing.html">
+                        How to Contribute
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../autoapi/index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/peptide-digest/ScienceScraper" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../getting_started.html">
+                        Getting Started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../contributing.html">
+                        How to Contribute
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../autoapi/index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/peptide-digest/ScienceScraper" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">ScienceScraper Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sciencedirect.html">Scraping ScienceDirect</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Scraping PubMedCentral (PMC)</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">User Guide</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Scraping...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="scraping-pubmedcentral-pmc">
+<h1>Scraping PubMedCentral (PMC)<a class="headerlink" href="#scraping-pubmedcentral-pmc" title="Link to this heading">#</a></h1>
+<p>PMC is a free full-text archive of biomedical and life sciences journal literature maintained by
+the National Center for Biotechnology Information (NCBI), which is part of the United States National
+Library of Medicine (NLM), a branch of the National Institutes of Health (NIH).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is not necessary to have an API key to access the PMC database. However, there is a limit
+of 3 requests per second. Please note that if you exceed this limit, you may be temporarily
+blocked from accessing the PMC database.</p>
+</div>
+<section id="retrieving-article-information-from-pmc">
+<h2>Retrieving Article Information from PMC<a class="headerlink" href="#retrieving-article-information-from-pmc" title="Link to this heading">#</a></h2>
+<p>To retrieve an article from PMC, we needs its unique identifier, called the PMC ID (PMCID). The PMCID
+is a string of the form “PMC” followed by a number. This can be found in the article as well as in the
+URL of the article page on the PMC website.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-0">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sciencescraper</span> <span class="k">as</span> <span class="nn">ss</span>
+
+<span class="n">pmc_id</span> <span class="o">=</span> <span class="s1">&#39;PMC9305720&#39;</span>
+<span class="n">article_info</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">get_pmc_article_info</span><span class="p">(</span><span class="n">pmc_id</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">article_info</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-1">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">{&#39;title&#39;: &#39;De novo design of modular peptide-binding proteins by superhelical matching&#39;,</span>
+<span class="go">&#39;authors&#39;: [&#39;Kejia Wu&#39;,</span>
+<span class="go">&#39;Hua Bai&#39;,</span>
+<span class="go">...</span>
+<span class="go">&#39;David Baker&#39;],</span>
+<span class="go">&#39;journal&#39;: &#39;Nature&#39;,</span>
+<span class="go">&#39;publisher&#39;: &#39;Nature Publishing Group UK&#39;,</span>
+<span class="go">&#39;article_type&#39;: &#39;research-article&#39;,</span>
+<span class="go">&#39;doi&#39;: &#39;10.1038/s41586-023-05909-9&#39;,</span>
+<span class="go">&#39;pmc_id&#39;: &#39;10115654&#39;,</span>
+<span class="go">&#39;date&#39;: &#39;2023-4-5&#39;,</span>
+<span class="go">&#39;url&#39;: &#39;https://www.ncbi.nlm.nih.gov/pmc/articles/10115654/&#39;,</span>
+<span class="go">&#39;keywords&#39;: [&#39;Proteins&#39;, &#39;Protein design&#39;],</span>
+<span class="go">&#39;abstract&#39;: &#39;General approaches for designing sequence-specific peptide-binding...&#39;,</span>
+<span class="go">&#39;introduction&#39;: &#39;...&#39;,</span>
+<span class="go">&#39;methods&#39;: &#39;...&#39;,</span>
+<span class="go">&#39;results&#39;: &#39;...&#39;,</span>
+<span class="go">&#39;discussion&#39;: &#39;...&#39;,</span>
+<span class="go">full_text: &#39;...&#39;}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The function <a class="reference internal" href="../autoapi/sciencescraper/index.html#sciencescraper.get_pmc_article_info" title="sciencescraper.get_pmc_article_info"><code class="xref py py-func docutils literal notranslate"><span class="pre">sciencescraper.get_pmc_article_info()</span></code></a> retrieves the article information from PMC and returns
+a dictionary containing the article information and full text.</p>
+</section>
+<section id="retrieving-full-text-only">
+<h2>Retrieving Full Text Only<a class="headerlink" href="#retrieving-full-text-only" title="Link to this heading">#</a></h2>
+<p>If you are only interested in the full text of the article, you can use the function <a class="reference internal" href="../autoapi/sciencescraper/index.html#sciencescraper.get_pmc_full_text" title="sciencescraper.get_pmc_full_text"><code class="xref py py-func docutils literal notranslate"><span class="pre">sciencescraper.get_pmc_full_text()</span></code></a>.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-2">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sciencescraper</span> <span class="k">as</span> <span class="nn">ss</span>
+
+<span class="n">pmc_id</span> <span class="o">=</span> <span class="s1">&#39;PMC9305720&#39;</span>
+<span class="n">full_text</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">get_pmc_full_text</span><span class="p">(</span><span class="n">pmc_id</span><span class="p">,</span> <span class="n">chunk_size</span><span class="o">=</span><span class="mi">4200</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">full_text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-3">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">[&#39;Title: De novo design of modular peptide-binding proteins by superhelical matching.</span>
+<span class="go"> Article type: research-article. Publisher: Nature Publishing Group UK</span>
+<span class="go"> Journal: Nature. Date: 2023-4-5. Keywords: Proteins, Protein design.</span>
+<span class="go"> Abstract: General approaches for designing sequence-specific peptide-binding proteins</span>
+<span class="go"> would have wide utility in proteomics and synthetic biology. However, designing</span>
+<span class="go"> peptide-binding proteins is challenging, as most peptides do not have defined structures</span>
+<span class="go"> in isolation, and hydrogen bonds must be made to the buried polar groups in the peptide</span>
+<span class="go"> backbone. Here, inspired by natural and re-engineered protein–peptide systems,</span>
+<span class="go"> we set out to design proteins made out of repeating units that bind peptides with repeating</span>
+<span class="go"> sequences, with a one-to-one correspondence between the repeat units of the protein and those</span>
+<span class="go"> of the peptide. We use geometric hashing to identify protein backbones and peptide-docking</span>
+<span class="go"> arrangements that are compatible with bidentate hydrogen bonds between the side chains of</span>
+<span class="go"> the protein and the peptide backbone12. The remainder of the protein sequence is then optimized</span>
+<span class="go"> for folding and peptide binding...]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="searching-for-articles">
+<h2>Searching for Articles<a class="headerlink" href="#searching-for-articles" title="Link to this heading">#</a></h2>
+<p>You can search for articles on PMC using the function <a class="reference internal" href="../autoapi/sciencescraper/index.html#sciencescraper.search_pmc" title="sciencescraper.search_pmc"><code class="xref py py-func docutils literal notranslate"><span class="pre">sciencescraper.search_pmc()</span></code></a>. This function returns a list of PMCID’s
+that match the search query. The function takes the following arguments:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">query</span></code>: The search query.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sort</span></code>: The sort order of the search results. The default is ‘relevance’. Other options are ‘pub_date’, ‘JournalName’, and ‘Author’.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mindate</span></code>: The minimum date for the search results. Format is ‘YYYY/MM/DD’.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">maxdate</span></code>: The maximum date for the search results. Format is ‘YYYY/MM/DD’.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reldate</span></code>: The number of days before the current date to search for articles.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">retstart</span></code>: The start index of the search results.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">retmax</span></code>: The maximum number of search results to return.</p></li>
+</ul>
+<p>Only the <code class="docutils literal notranslate"><span class="pre">query</span></code> argument is required. The other arguments are optional.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-4">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sciencescraper</span> <span class="k">as</span> <span class="nn">ss</span>
+
+<span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;protein design&#39;</span>
+<span class="n">pmc_ids</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">search_pmc</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">retmax</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pmc_ids</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-5">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">[&#39;9523718&#39;, &#39;9148388&#39;, &#39;7032036&#39;, &#39;7243446&#39;, &#39;8920274&#39;]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="checking-for-the-newest-articles">
+<h2>Checking for the Newest Articles<a class="headerlink" href="#checking-for-the-newest-articles" title="Link to this heading">#</a></h2>
+<p>You can check for the newest articles on PMC using the function <a class="reference internal" href="../autoapi/sciencescraper/index.html#sciencescraper.check_new_pmc_articles" title="sciencescraper.check_new_pmc_articles"><code class="xref py py-func docutils literal notranslate"><span class="pre">sciencescraper.check_new_pmc_articles()</span></code></a>. This function returns a list of PMCID’s
+for the newest articles on PMC. The function takes the following arguments:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">query</span></code>: The search query.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">days</span></code>: The number of days before the current date to search for articles.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">chunk_size</span></code>: The number of words to split the full text into. Optional.</p></li>
+</ul>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-python" for="sd-tab-item-6">
+PYTHON</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sciencescraper</span> <span class="k">as</span> <span class="nn">ss</span>
+
+<span class="n">pmc_ids</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">check_new_pmc_articles</span><span class="p">(</span><span class="s1">&#39;protein design&#39;</span><span class="p">,</span> <span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pmc_ids</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tabcode-output" for="sd-tab-item-7">
+OUTPUT</label><div class="sd-tab-content docutils">
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">PubMed Central has 20 new articles!</span>
+<span class="go">[{&#39;title&#39;: &#39;Cross-link assisted spatial proteomics to map sub-organelle proteomes and membrane</span>
+<span class="go">protein topologies&#39;, &#39;authors&#39;: [&#39;Ying Zhu&#39;, &#39;Kerem Can Akkaya&#39;, &#39;Julia Ruta&#39;, &#39;Nanako Yokoyama&#39;,</span>
+<span class="go">&#39;Cong Wang&#39;, &#39;Max Ruwolt&#39;, &#39;Diogo Borges Lima&#39;, &#39;Martin Lehmann&#39;, &#39;Fan Liu&#39;], &#39;journal&#39;: &#39;Nature Communications&#39;,</span>
+<span class="go">&#39;publisher&#39;: &#39;Nature Publishing Group UK&#39;, article_type&#39;: &#39;research-article&#39;, &#39;doi&#39;: &#39;10.1038/s41467-024-47569-x&#39;,</span>
+<span class="go">&#39;pmc_id&#39;: &#39;11024108&#39;, &#39;date&#39;: &#39;2024-4-17&#39;, &#39;url&#39;: &#39;https://www.ncbi.nlm.nih.gov/pmc/articles/11024108/&#39;,</span>
+<span class="go">&#39;keywords&#39;: [&#39;Protein-protein interaction networks&#39;, &#39;Mitochondria&#39;, &#39;Membrane proteins&#39;, &#39;Mass spectrometry&#39;],</span>
+<span class="go">&#39;abstract&#39;: &#39;The functions of cellular organelles and sub-compartments depend on their protein content, which can be</span>
+<span class="go">characterized by spatial proteomics approaches. However, many spatial proteomics methods are limited in their ability</span>
+<span class="go">to resolve organellar sub-compartments, profile multiple sub-compartments in parallel...&#39;}...]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="sciencedirect.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Scraping ScienceDirect</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../contributing.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">How to Contribute</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieving-article-information-from-pmc">Retrieving Article Information from PMC</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieving-full-text-only">Retrieving Full Text Only</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#searching-for-articles">Searching for Articles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-for-the-newest-articles">Checking for the Newest Articles</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/user_guide/pmc.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Joshua Blomgren, Elizabeth Gilson, Jeffrey Jacob. Project structure based on the Computational Molecular Science Python Cookiecutter version 1.1.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.2.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
