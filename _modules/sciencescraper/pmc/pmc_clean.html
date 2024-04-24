@@ -447,7 +447,10 @@ document.write(`
         <span class="n">table</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span>
 
     <span class="k">for</span> <span class="n">sec</span> <span class="ow">in</span> <span class="n">body</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;sec&quot;</span><span class="p">):</span>
-        <span class="n">title</span> <span class="o">=</span> <span class="n">sec</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span>
+        <span class="n">title_tag</span> <span class="o">=</span> <span class="n">sec</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">title_tag</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># Check if title tag exists</span>
+            <span class="k">continue</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">title_tag</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span>
 
         <span class="n">unwanted_sections</span> <span class="o">=</span> <span class="p">[</span>
             <span class="s2">&quot;Supplementary&quot;</span><span class="p">,</span>
@@ -484,6 +487,7 @@ document.write(`
         <span class="n">full_text</span> <span class="o">=</span> <span class="n">split_into_chunks</span><span class="p">(</span><span class="n">full_text</span><span class="p">,</span> <span class="n">chunk_size</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">full_text</span></div>
+
 
 
 

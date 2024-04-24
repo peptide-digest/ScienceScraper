@@ -52,8 +52,8 @@ Functions
                 * **days** (*int*) -- The number of days to search back from the current date.
                 * **chunk_size** (*int, optional*) -- The size of the chunks to split the full text into
 
-   :returns: **pmc_ids** -- The PMC IDs of the search results
-   :rtype: list
+   :returns: **pmc_articles** -- A list of dictionaries containing article information
+   :rtype: list of dict
 
 
 .. py:function:: notify_new_articles(articles)

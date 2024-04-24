@@ -390,6 +390,7 @@ document.write(`
 
 <span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span> <span class="nn">time</span>
 
 <span class="kn">from</span> <span class="nn">.pmc_scrape</span> <span class="kn">import</span> <span class="n">get_article_info</span>
 
@@ -480,8 +481,8 @@ document.write(`
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    pmc_ids : list</span>
-<span class="sd">        The PMC IDs of the search results</span>
+<span class="sd">    pmc_articles : list of dict</span>
+<span class="sd">        A list of dictionaries containing article information</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">pmc_ids</span> <span class="o">=</span> <span class="n">search_pmc</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">reldate</span><span class="o">=</span><span class="n">days</span><span class="p">)</span>
 
@@ -490,6 +491,8 @@ document.write(`
     <span class="k">for</span> <span class="n">pmc_id</span> <span class="ow">in</span> <span class="n">pmc_ids</span><span class="p">:</span>
         <span class="n">pmc_article</span> <span class="o">=</span> <span class="n">get_article_info</span><span class="p">(</span><span class="n">pmc_id</span><span class="p">,</span> <span class="n">chunk_size</span><span class="p">)</span>
         <span class="n">pmc_articles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pmc_article</span><span class="p">)</span>
+        <span class="c1"># Wait for 1 second to avoid overloading the server</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
     <span class="n">notify_new_articles</span><span class="p">(</span><span class="n">pmc_articles</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">pmc_articles</span></div>
