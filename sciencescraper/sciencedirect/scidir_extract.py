@@ -49,7 +49,18 @@ def get_authors(xml_text):
         if author_tags
         else ["Not found."]
     )
-    return [f"{author.split(', ')[1]} {author.split(', ')[0]}" for author in authors]
+    
+    formatted_authors = []
+    for author in authors:
+        # Check if the author name is in the expected format
+        if ', ' in author:
+            last_name, first_name = author.split(', ', 1)
+            formatted_authors.append(f"{first_name} {last_name}")
+        else:
+            formatted_authors.append(author)
+
+    return formatted_authors
+
 
 
 def get_journal(xml_text):

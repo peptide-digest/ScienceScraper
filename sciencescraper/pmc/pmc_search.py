@@ -4,6 +4,7 @@ Functions for searching for articles on PubMed Central.
 
 import requests
 from bs4 import BeautifulSoup
+import time
 
 from .pmc_scrape import get_article_info
 
@@ -89,8 +90,8 @@ def check_new_articles(query, days, chunk_size=None):
 
     Returns
     -------
-    pmc_ids : list
-        The PMC IDs of the search results
+    pmc_articles : list of dict
+        A list of dictionaries containing article information
     """
     pmc_ids = search_pmc(query, reldate=days)
 
@@ -99,6 +100,8 @@ def check_new_articles(query, days, chunk_size=None):
     for pmc_id in pmc_ids:
         pmc_article = get_article_info(pmc_id, chunk_size)
         pmc_articles.append(pmc_article)
+        # Wait for 1 second to avoid overloading the server
+        time.sleep(1)
 
     notify_new_articles(pmc_articles)
     return pmc_articles

@@ -267,7 +267,10 @@ def get_intro(pmc_article):
     intro = ""
 
     for sec in body.find_all("sec"):
-        title = sec.find("title").get_text()
+        title_tag = sec.find("title")
+        if title_tag is None:  # Check if title tag exists
+            continue
+        title = title_tag.get_text()
 
         if "introduction" in title.lower():
             content = sec.find_all("p")
@@ -313,7 +316,10 @@ def get_methods(pmc_article):
     methods = ""
 
     for sec in body.find_all("sec"):
-        title = sec.find("title").get_text()
+        title_tag = sec.find("title")
+        if title_tag is None:  # Check if title tag exists
+            continue
+        title = title_tag.get_text()
 
         if "method" in title.lower():
             content = sec.find_all("p")
@@ -359,7 +365,10 @@ def get_discussion(pmc_article):
     discussion = ""
 
     for sec in body.find_all("sec"):
-        title = sec.find("title").get_text()
+        title_tag = sec.find("title")
+        if title_tag is None:  # Check if title tag exists
+            continue
+        title = title_tag.get_text()
 
         if "discussion" in title.lower():
             content = sec.find_all("p")
@@ -375,6 +384,7 @@ def get_discussion(pmc_article):
 
     discussion = clean_references(discussion)
     return discussion
+
 
 
 def clean_references(pmc_article):

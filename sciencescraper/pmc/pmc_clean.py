@@ -59,7 +59,10 @@ def clean_full_text(pmc_article, chunk_size):
         table.decompose()
 
     for sec in body.find_all("sec"):
-        title = sec.find("title").get_text()
+        title_tag = sec.find("title")
+        if title_tag is None:  # Check if title tag exists
+            continue
+        title = title_tag.get_text()
 
         unwanted_sections = [
             "Supplementary",
@@ -96,6 +99,7 @@ def clean_full_text(pmc_article, chunk_size):
         full_text = split_into_chunks(full_text, chunk_size)
 
     return full_text
+
 
 
 def split_into_chunks(text, chunk_size):
