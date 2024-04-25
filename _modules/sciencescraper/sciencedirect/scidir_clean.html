@@ -481,7 +481,12 @@ document.write(`
             <span class="n">cleaned_text</span> <span class="o">+=</span> <span class="n">section_title</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span> <span class="o">+</span> <span class="n">section_text</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
 
         <span class="c1"># Combine title, abstract, and cleaned text</span>
-        <span class="n">abstract</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;dc:description&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+        <span class="n">description_tag</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;dc:description&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">description_tag</span><span class="p">:</span>
+            <span class="n">abstract</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">description_tag</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">abstract</span> <span class="o">=</span> <span class="s2">&quot;Abstract: Not found.</span><span class="se">\n</span><span class="s2">&quot;</span>
+            
         <span class="n">full_text</span> <span class="o">=</span> <span class="p">(</span>
             <span class="n">title</span>
             <span class="o">+</span> <span class="n">article_type</span>
