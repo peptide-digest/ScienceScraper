@@ -24,7 +24,7 @@ def get_title(xml_text):
     if title_tag:
         title = title_tag.text.strip()
     else:
-        title = "Not found."
+        title = "Not found"
     return title
 
 
@@ -82,7 +82,7 @@ def get_journal(xml_text):
     if journal_tag:
         journal = journal_tag.text.strip()
     else:
-        journal = "Not found."
+        journal = "Not found"
     return journal
 
 
@@ -105,7 +105,7 @@ def get_publisher(xml_text):
     if publisher_tag:
         publisher = publisher_tag.text.strip()
     else:
-        publisher = "Not found."
+        publisher = "Not found"
     return publisher
 
 
@@ -128,7 +128,7 @@ def get_article_type(xml_text):
     if article_type_tag:
         article_type = article_type_tag.text.strip()
     else:
-        article_type = "Not found."
+        article_type = "Not found"
     return article_type
 
 
@@ -151,7 +151,7 @@ def get_date(xml_text):
     if date_tag:
         date = date_tag.text.strip()
     else:
-        date = "Not found."
+        date = "Not found"
     return date
 
 
@@ -198,7 +198,7 @@ def get_doi(xml_text):
     if doi_tag:
         doi = doi_tag.text.strip()
     else:
-        doi = "Not found."
+        doi = "Not found"
     return doi
 
 
@@ -221,7 +221,7 @@ def get_pii(xml_text):
     if pii_tag:
         pii = pii_tag.text.strip()
     else:
-        pii = "Not found."
+        pii = "Not found"
     return pii
 
 
@@ -248,7 +248,7 @@ def get_open_access(xml_text):
         else:
             open_access = "Yes"
     else:
-        open_access = "Not found."
+        open_access = "Not found"
     return open_access
 
 

@@ -31,7 +31,7 @@ dependencies = [
 # Update the urls once the hosting is set up.
 #[project.urls]
 #"Source" = "https://github.com/peptide-digest/ScienceScraper/"
-#"Documentation" = "https://sciencescraper.readthedocs.io/"
+#"Documentation" = "https://peptide-digest.github.io/ScienceScraper/"
 
 [project.optional-dependencies]
 test = [

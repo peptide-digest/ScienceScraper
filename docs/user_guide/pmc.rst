@@ -8,7 +8,8 @@ Library of Medicine (NLM), a branch of the National Institutes of Health (NIH).
 .. note::
     It is not necessary to have an API key to access the PMC database. However, there is a limit
     of 3 requests per second. Please note that if you exceed this limit, you may be temporarily
-    blocked from accessing the PMC database.
+    blocked from accessing the PMC database. :func:`sciencescraper.check_new_pmc_articles` makes
+    sure that the requests are made at a rate that does not exceed the limit.
 
 Retrieving Article Information from PMC
 ---------------------------------------

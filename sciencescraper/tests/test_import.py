@@ -1,13 +1,9 @@
 """
-Unit and regression test for the articlescraper package.
+Unit and regression test for the ScienceScraper package.
 """
 
 # Import package, test suite, and other packages as needed
 import sys
-
-import pytest
-
-import sciencescraper
 
 
 def test_articlescraper_imported():

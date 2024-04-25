@@ -93,7 +93,12 @@ def clean_fulltext(xml_text, chunk_size):
             cleaned_text += section_title + ": " + section_text + "\n"
 
         # Combine title, abstract, and cleaned text
-        abstract = " ".join(soup.find("dc:description").text.strip().split())
+        description_tag = soup.find("dc:description")
+        if description_tag:
+            abstract = " ".join(description_tag.text.strip().split())
+        else:
+            abstract = "Abstract: Not found.\n"
+            
         full_text = (
             title
             + article_type
