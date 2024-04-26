@@ -389,7 +389,7 @@ document.write(`
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
-
+<span class="kn">import</span> <span class="nn">re</span>
 
 <div class="viewcode-block" id="get_title">
 <a class="viewcode-back" href="../../../autoapi/sciencescraper/sciencedirect/scidir_extract/index.html#sciencescraper.sciencedirect.scidir_extract.get_title">[docs]</a>
@@ -503,7 +503,11 @@ document.write(`
         <span class="n">publisher</span> <span class="o">=</span> <span class="n">publisher_tag</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">publisher</span> <span class="o">=</span> <span class="s2">&quot;Not found&quot;</span>
-    <span class="k">return</span> <span class="n">publisher</span></div>
+
+    <span class="n">phrases_to_remove</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;The Authors\.&#39;</span><span class="p">,</span> <span class="s1">&#39;The Author\.&#39;</span><span class="p">,</span> <span class="s1">&#39;The Author\(s\)\.&#39;</span><span class="p">]</span>
+    <span class="n">pattern</span> <span class="o">=</span> <span class="s1">&#39;|&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">phrases_to_remove</span><span class="p">)</span>
+    <span class="n">cleaned_publisher</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">publisher</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cleaned_publisher</span></div>
 
 
 
