@@ -504,7 +504,7 @@ document.write(`
     <span class="k">else</span><span class="p">:</span>
         <span class="n">publisher</span> <span class="o">=</span> <span class="s2">&quot;Not found&quot;</span>
 
-    <span class="n">phrases_to_remove</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;The Authors\.&#39;</span><span class="p">,</span> <span class="s1">&#39;The Author\.&#39;</span><span class="p">,</span> <span class="s1">&#39;The Author\(s\)\.&#39;</span><span class="p">]</span>
+    <span class="n">phrases_to_remove</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;The Authors.&#39;</span><span class="p">,</span> <span class="s1">&#39;The Author.&#39;</span><span class="p">,</span> <span class="s1">&#39;The Author(s).&#39;</span><span class="p">]</span>
     <span class="n">pattern</span> <span class="o">=</span> <span class="s1">&#39;|&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">phrases_to_remove</span><span class="p">)</span>
     <span class="n">cleaned_publisher</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">publisher</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">cleaned_publisher</span></div>
