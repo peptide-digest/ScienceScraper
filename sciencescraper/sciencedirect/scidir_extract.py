@@ -107,7 +107,7 @@ def get_publisher(xml_text):
     else:
         publisher = "Not found"
 
-    phrases_to_remove = ['The Authors\.', 'The Author\.', 'The Author\(s\)\.']
+    phrases_to_remove = ['The Authors.', 'The Author.', 'The Author(s).']
     pattern = '|'.join(phrases_to_remove)
     cleaned_publisher = re.sub(pattern, '', publisher)
     return cleaned_publisher
