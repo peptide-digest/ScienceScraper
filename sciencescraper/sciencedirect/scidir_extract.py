@@ -3,7 +3,7 @@ Functions that extract information from the raw text of ScienceDirect articles.
 """
 
 from bs4 import BeautifulSoup
-
+import re
 
 def get_title(xml_text):
     """
@@ -106,7 +106,11 @@ def get_publisher(xml_text):
         publisher = publisher_tag.text.strip()
     else:
         publisher = "Not found"
-    return publisher
+
+    phrases_to_remove = ['The Authors\.', 'The Author\.', 'The Author\(s\)\.']
+    pattern = '|'.join(phrases_to_remove)
+    cleaned_publisher = re.sub(pattern, '', publisher)
+    return cleaned_publisher
 
 
 def get_article_type(xml_text):
